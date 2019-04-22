@@ -1,0 +1,216 @@
+body {
+    font-family: "Lato", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #808080;
+}
+
+header {
+    background: rgb(234, 123, 54);
+    color: #ffffff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #000000 3px solid;
+    width: 100%;
+
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    /* background-color: #808080; */
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+header a {
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+header li {
+    float: left;
+    display: inline;
+    padding: 0 20px 0 20px;
+}
+
+header #branding {
+    float: left;
+}
+
+header #branding h1 {
+    margin: 0;
+}
+
+header nav {
+    float: right;
+    margin-top: 10px;
+}
+
+header a:hover {
+    color: #cccccc;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+.sidenav {
+    margin-top: 103px;
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(234, 123, 54);
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    margin-top: 20px;
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #000000;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+    background-color: #808080;
+}
+
+
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+
+
+#outer-form {
+    text-align: left;
+    background-color: white;
+    height: 100%;
+    width: 75%;
+    max-width: 900px;
+    padding: 10px;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #808080;
+}
+
+
+
+.labels {
+    display: inline-block;
+    text-align: right;
+    width: 40%;
+    padding: 5px;
+    vertical-align: top;
+    margin-top: 10px;
+}
+
+.rightTab {
+    display: inline-block;
+    text-align: left;
+    width: 48%;
+    vertical-align: middle;
+}
+
+.input-field {
+    width: 70%;
+    height: 20px;
+    width: 250px;
+    padding: 5px;
+    margin: 10px;
+    border: 1px solid #c0c0c0;
+    border-radius: 4px;
+}
+
+.dropdown {
+    height: 30px;
+    width: 140px;
+    padding: 2px;
+    margin: 10px;
+    border: 1px solid #c0c0c0;
+    margin-top: 17px;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    height: 40px;
+    margin: 10px;
+    background-color: #03a9f4;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#address {
+    height: 50px;
+    overflow: hidden;
+}
+#address{
+    width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 37px;
+    /* box-sizing: border-box; */
+    resize: none;
+}
+
+
+/* Loan History */
+table {
+    margin: 50px;
+    width: inherit;
+}
+
+#table {
+    margin-left: 100px;
+
+}
+
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td,
+#customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+    background-color: #ddd;
+}
+
+#customers th {
+    width: 270px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #000000;
+    color: white;
+}

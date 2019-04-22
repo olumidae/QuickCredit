@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" media="screen" href="/ui/css/userDash.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>Quick Credit</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="/ui/index.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="sidenav">
+        <a href="#apply" onclick="showDiv()";>Apply For A Loan</a>
+        <a href="#history" onclick="showLoanHistory();">Loan Repayment History</a>
+    </div>
+
+    <!-- Application Form  -->
+    <div class="container">
+        
+        <div id="outer-form">
+            <form id="survey-form" action="GET" style="display:none">
+                    <h1 id="title">Fill the form to apply for a loan</h1>
+                <div class="rowTab">
+                    <div class="labels">
+                        <label id="fname-label" for="firstName">First Name</label>
+                    </div>
+                    <div class="rightTab">
+                        <input id="fname" class="input-field" autofocus="" type="text" name="FirstName"
+                            placeholder="Enter your first name" required>
+                    </div>
+                </div>
+                <div class="rowTab">
+                    <div class="labels">
+                        <label id="lname-label" for="lastName">Last Name</label>
+                    </div>
+                    <div class="rightTab">
+                        <input id="lname" class="input-field" autofocus="" type="text" name="LastName"
+                            placeholder="Enter your last name" required>
+                    </div>
+                </div>
+                <div class="rowTab">
+                    <div class="labels">
+                        <label id="email-label" for="age">Email</label>
+                    </div>
+                    <div class="rightTab">
+                        <input id="email" class="input-field" autofocus="" type="email" name="Email" placeholder="Email"
+                            required>
+                    </div>
+                </div>
+                <div class="rowTab">
+                    <div class="labels">
+                        <label id="address-label" for="address">Address</label>
+                    </div>
+                    <div class="rightTab">
+                        <textarea id="address" class="input-field" autofocus="" type="text" name="Address"
+                            placeholder="Address" required></textarea>
+                    </div>
+                </div>
+                <div class="rowTab">
+                    <div class="labels">
+                        <label id="address-label" for="amount">Amount</label>
+                    </div>
+                    <div class="rightTab">
+                        <input id="amount" class="input-field" autofocus="" type="number" name="amount"
+                            placeholder="Amount" required>
+                    </div>
+                </div>
+                <div class="rowTab">
+                    <div class="labels">
+                        <label for="tenor">Tenor</label>
+                    </div>
+                    <div class="rightTab">
+                        <select id="dropdown" class="dropdown" name="tenor">
+                            <option disabled value="">Select an option</option>
+                            <option value="1 month">1 month</option>
+                            <option value="2 months">2 months</option>
+                            <option value="3 months">3 months</option>
+                            <option value="4 months">4 months</option>
+                            <option value="5 months">5 months</option>
+                            <option value="6 months">6 months</option>
+                            <option value="7 months">7 months</option>
+                            <option value="8 months">8 months</option>
+                            <option value="9 months">9 months</option>
+                            <option value="10 months">10 months</option>
+                            <option value="11 months">11 months</option>
+                            <option value="12 months">12 months</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="rowTab">
+                    <div class="labels">
+                        <label id="payment-label" for="amount">Payment Installment</label>
+                    </div>
+                    <div class="rightTab">
+                        <input id="payment-installment" class="input-field" autofocus="" type="number"
+                            name="paymentInstallment" placeholder="Payment Installment" required>
+                    </div>
+                </div>
+                   <div class="rowTab">
+                       <div class="labels">
+                            
+                       </div>
+                       <div class="rightTab">
+                            <input type="submit" id="confirm-loan" value="Apply For Loan">
+                       </div>
+                   </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loan Repayment History -->
+    <div class="container">
+        <div id="table" style="display: none">
+            <h1>Loan History</h1>
+            <table id="customers" >
+                        <tr>
+                        <th>Date Created</th>
+                          <th>Amount Loaned</th>
+                          <th>Amount Paid</th>
+                          <th>Amount Due</th>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      </table>
+        </div>
+    </div>
+
+    <script src="/ui/js/userDash.js"></script>
+</body>
+
+</html>
