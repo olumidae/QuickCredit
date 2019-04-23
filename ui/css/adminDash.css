@@ -143,5 +143,11 @@ table {
 /* View Loans Table */
 #allLoans {
     margin-left: 100px;
-    /* display: none; */
+    display: none;
+}
+
+/* View unpaid loans */
+#unpaidLoans {
+    margin-left: 60px;
+    display: none;
 }
