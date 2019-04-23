@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" media="screen" href="/ui/css/adminDash.css">
+    <title>Dashboard</title>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>Quick Credit</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="/ui/index.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="sidenav">
+        <a href="#verifyClient" onclick="clientTable();">Verify client</a>
+        <a href="#allLoans" >View all loans</a>
+        <a href="#">View all loans(not fully paid)</a>
+        <a href="#">View all repaid loans</a>
+        <a href="#">View a specific loan</a>
+        <a href="#">Approve/Reject loan</a>
+        <a href="#">Post loan repayment</a>
+    </div>
+
+    <!-- Mark client as verified -->
+    <div class="container">
+        <div id="clients" >
+            <h1>Mark client as verified</h1>
+            <table id="customers">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Verify</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><input type="button" value="Verify" onclick="verifyClient();"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="/ui/js/adminDash.js"></script>
+</body>
+
+</html>
