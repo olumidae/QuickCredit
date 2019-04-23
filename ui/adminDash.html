@@ -27,7 +27,7 @@
     <div class="sidenav">
         <a href="#verifyClient" onclick="clientTable();">Verify client</a>
         <a href="#allLoans" onclick="viewAllLoans();" >View all loans</a>
-        <a href="#">View all loans(not fully paid)</a>
+        <a href="#unpaidLoans" onclick="viewUnpaidLoans();">View all unpaid loans</a>
         <a href="#">View all repaid loans</a>
         <a href="#">View a specific loan</a>
         <a href="#">Approve/Reject loan</a>
@@ -36,7 +36,7 @@
 
     <!-- Mark client as verified -->
     <div class="container">
-        <div id="clients" >
+        <div id="clients">
             <h1>Mark client as verified</h1>
             <table id="customers">
                 <tr>
@@ -86,9 +86,58 @@
     </div>
 
       <!-- View all loans -->
-      <div class="container">
-        <div id="allLoans" >
-            <h1>All Loans</h1>
+    <div class="container">
+          <div id="allLoans">
+              <h1>All Loans</h1>
+              <table id="customers">
+                  <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Date Created</th>
+                      <th>Amount Loaned</th>
+                      <th>Amount Paid</th>
+                      <th>Amount Due</th>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+              </table>
+          </div>
+    </div>
+
+     <!-- View all unpaid loans -->
+     <div class="container">
+        <div id="unpaidLoans" >
+            <h1>All Unpaid Loans</h1>
             <table id="customers">
                 <tr>
                     <th>Name</th>
@@ -96,6 +145,7 @@
                     <th>Date Created</th>
                     <th>Amount Loaned</th>
                     <th>Amount Paid</th>
+                    <th>Tenor</th>
                     <th>Amount Due</th>
                 </tr>
                 <tr>
@@ -105,13 +155,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -121,8 +164,19 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -133,6 +187,7 @@
             </table>
         </div>
     </div>
+    
     <script src="/ui/js/adminDash.js"></script>
 </body>
 
