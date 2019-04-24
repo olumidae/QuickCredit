@@ -29,7 +29,7 @@
         <a href="#allLoans" onclick="viewAllLoans();" >View all loans</a>
         <a href="#unpaidLoans" onclick="viewUnpaidLoans();">View all unpaid loans</a>
         <a href="#repaidLoans" onclick="viewRepaidLoans();">View all repaid loans</a>
-        <a href="#">View a specific loan</a>
+        <a href="#" onclick="viewSpecificLoan();">View a specific loan</a>
         <a href="#">Approve/Reject loan</a>
         <a href="#">Post loan repayment</a>
     </div>
@@ -237,6 +237,61 @@
         </div>
     </div>
     
+       <!-- View Specific Loan -->
+    <div class="container">
+        <div id="specificLoan">
+            <h1>View specific loan</h1>
+            <input type="text" id="myInput" onkeyup="getSpecificLoan();" placeholder="Search for names.." title="Enter keyword">
+            <table id="filterTable">
+                <tr class="header">
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Date Created</th>
+                    <th>Amount Loaned</th>
+                    <th>Amount Paid</th>
+                    <th>Amount Due</th>
+                    <th>Tenor</th>
+                </tr>
+                <tr>
+                  <td>John Smith</td>
+                  <td>johnsmith @mail.com</td>
+                  <td>23-04-2019</td>
+                  <td>500,000</td>
+                  <td>400,000</td>
+                  <td>100,000</td>
+                  <td>10 months</td>
+                </tr>
+                <tr>
+                  <td>Michael Peters</td>
+                  <td>michael.peters@gmail.com</td>
+                  <td>06-03-1993</td>
+                  <td>1,000,000</td>
+                  <td>800,000</td>
+                  <td>200,000</td>
+                  <td>12 months</td>
+                </tr>
+                <tr>
+                  <td>Island Trading</td>
+                  <td>islandtrading@aol.com</td>
+                  <td>04-02-1991</td>
+                  <td>5,000,000</td>
+                  <td>5,000,000</td>
+                  <td>0</td>
+                  <td>2 months</td>
+                </tr>
+                <tr>
+                  <td>Koniglich Essen</td>
+                  <td>konglichessen@yahoo.com</td>
+                  <td>20-01-1956</td>
+                  <td>3,500,000</td>
+                  <td>600,000</td>
+                  <td>2,900,000</td>
+                  <td>8 months</td>
+                </tr>
+              </table>
+        </div>
+    </div>
+
     <script src="/ui/js/adminDash.js"></script>
 </body>
 
