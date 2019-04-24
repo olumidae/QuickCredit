@@ -146,8 +146,67 @@ table {
     display: none;
 }
 
+/* View unpaid loans table */
+#unpaidLoans {
+    margin-left: 60px;
+
+    display: none;
+}
+
+/* View repaid loans table */
+#repaidLoans {
+    margin-left: 60px;
+    display: none;
+}
+
 /* View unpaid loans table*/
 #unpaidLoans {
     margin-left: 60px;
     display: none;
+}
+
+/* View specific loan */
+#specificLoan {
+    margin-left: 60px;
+    display:none;
+}
+
+#myInput {
+    background-position: 10px 10px;
+    float: right;
+    width: 50%px;
+    font-size: 16px;
+    padding: 12px 20px 12px 4px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 12px;
+ }
+
+ #filterTable {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#filterTable td,
+#filterTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#filterTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#filterTable tr:hover {
+    background-color: #ddd;
+}
+
+#filterTable th {
+    width: 270px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #000000;
+    color: white;
 }
