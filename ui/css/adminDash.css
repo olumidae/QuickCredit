@@ -210,3 +210,10 @@ table {
     background-color: #000000;
     color: white;
 }
+
+/* View Approve/Reject Loans */
+#approveReject {
+    margin-top: 50px;
+    margin-left: 70px;
+    margin-right: 100px;
+    display: none;
