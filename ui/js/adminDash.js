@@ -5,6 +5,7 @@ const clientTable = () => {
   document.getElementById("repaidLoans").style.display = "none";
   document.getElementById("specificLoan").style.display = "none";
   document.getElementById("approveReject").style.display = "none";
+  document.getElementById("loan-repayment-form").style.display = "none";
 }
 
 const verifyClient = () => {
@@ -18,7 +19,7 @@ const viewAllLoans = () => {
   document.getElementById("repaidLoans").style.display = "none";
   document.getElementById("specificLoan").style.display = "none";
   document.getElementById("approveReject").style.display = "none";
-  
+  document.getElementById("loan-repayment-form").style.display = "none";
 }
 
 const viewUnpaidLoans = () => {
@@ -28,7 +29,7 @@ const viewUnpaidLoans = () => {
   document.getElementById("repaidLoans").style.display = "none";
   document.getElementById("specificLoan").style.display = "none";
   document.getElementById("approveReject").style.display = "none";
-
+  document.getElementById("loan-repayment-form").style.display = "none";
 }
 
 const viewRepaidLoans = () => {
@@ -38,7 +39,7 @@ const viewRepaidLoans = () => {
   document.getElementById("unpaidLoans").style.display = "none";
   document.getElementById("specificLoan").style.display = "none";
   document.getElementById("approveReject").style.display = "none";
-
+  document.getElementById("loan-repayment-form").style.display = "none";
 }
 
 const viewSpecificLoan = () => {
@@ -48,6 +49,7 @@ const viewSpecificLoan = () => {
   document.getElementById("allLoans").style.display = "none";
   document.getElementById("unpaidLoans").style.display = "none";
   document.getElementById("approveReject").style.display = "none";
+  document.getElementById("loan-repayment-form").style.display = "none";
 }
 
 const getSpecificLoan = () => {
@@ -76,4 +78,15 @@ const viewApproveReject = () => {
   document.getElementById("repaidLoans").style.display = "none";
   document.getElementById("specificLoan").style.display = "none";
   document.getElementById("approveReject").style.display = "block";
+  document.getElementById("loan-repayment-form").style.display = "none";
+}
+
+const viewLoanRepayment = () => {
+  document.getElementById("clients").style.display = "none";
+  document.getElementById("allLoans").style.display = "none";
+  document.getElementById("unpaidLoans").style.display = "none";
+  document.getElementById("repaidLoans").style.display = "none";
+  document.getElementById("specificLoan").style.display = "none";
+  document.getElementById("approveReject").style.display = "none";
+  document.getElementById("loan-repayment-form").style.display = "block";
 }
