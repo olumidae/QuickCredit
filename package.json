@@ -2,9 +2,13 @@
   "name": "quickcredit",
   "version": "1.0.0",
   "description": "Online lending platform",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require @babel/register --exit",
+    "start": "babel-node app.js",
+    "start:server": "babel-node -- app.js",
+    "dev": "nodemon --exec babel-node app.js",
+    "build": "babel app.js --out-dir build"
   },
   "repository": {
     "type": "git",
@@ -20,7 +24,11 @@
   },
   "homepage": "https://github.com/olumidae/QuickCredit#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -34,6 +42,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2",
     "mocha": "^6.1.4",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.0"
   }
 }
