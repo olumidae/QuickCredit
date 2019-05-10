@@ -7,7 +7,7 @@ class UserData {
 
   signUp(info) {
     const newUser = {
-      id: this.users.length + 1,
+      id: this.UserData.length + 1,
       email: info.email,
       firstName: info.firstName,
       lastName: info.lastName,
@@ -17,7 +17,7 @@ class UserData {
       isAdmin: info.isAdmin,
       isLoggedIn: 'false',
     };
-    this.users.push(newUser);
+    this.UserData.push(newUser);
     return newUser;
   }
 }
