@@ -1,15 +1,16 @@
 import webtoken from 'jsonwebtoken';
-import authenticateUser from '../utils/authenticateUser';
-import usermodel from '../models/userModel';
+import bcrypt from 'bcrypt';
 import config from '../config/config.json';
+import userModel from '../models/userModel';
+import authenticateUser from '../utils/authenticateUser';
 
 const UserController = {
   getAllUsers: (req, res) => {
-    if (!usermodel.UserData.length) { 
-      return res.status(404).json({status: 404, error: 'No user(s) found' });
+    if (!userModel.UserData.length) {
+      return res.status(404).json({ status: 404, error: 'No user(s) found' });
     }
 
-    return res.status(200).json({ status: 200, data: usermodel.UserData });
+    return res.status(200).json({ status: 200, data: userModel.UserData });
   },
 
   signUp: (req, res) => {
@@ -18,14 +19,14 @@ const UserController = {
     if (error) {
       return res.status(400).json({ status: 400, error: error.details[0].message.slice(0, 70) });
     }
-    
-    let signupUser = usermodel.UserData.find(user => user.email === req.body.email);
+
+    let signupUser = userModel.UserData.find(user => user.email === req.body.email);
 
     if (signupUser) {
       return res.status(400).json({ status: 400, error: 'This email has been registered!' });
     }
 
-    signupUser = usermodel.UserData.signUp(req.body);
+    signupUser = userModel.signUp(req.body);
 
     const token = webtoken.sign({ sub: signupUser.id }, config.secret);
     res.status(201).json({
@@ -37,10 +38,10 @@ const UserController = {
     // validate data
     const { error } = authenticateUser.verifyUserValidator(req.body);
     if (error) {
-      return res.status(400).json({ status: 400, error: error.details[0].message.slice(0,70) });
+      return res.status(400).json({ status: 400, error: error.details[0].message.slice(0, 70) });
     }
 
-    const isloggedAsAdmin = usermodel.UserData.find(user => user.email === req.body.verifiedBy && user.isLoggedIn === 'true' && user.isAdmin === 'true');
+    const isloggedAsAdmin = userModel.UserData.find(user => user.email === req.body.verifiedBy && user.isLoggedIn === 'true' && user.isAdmin === 'true');
     if (!isloggedAsAdmin) {
       return res.status(400).json({ status: 400, error: 'You are not allowed to verify the clients user account. Log in as Admin' });
     }
@@ -48,7 +49,7 @@ const UserController = {
 
     // Check if user exists
 
-    let updateuser = usermodel.UserData.find(user => user.email === req.params.email);
+    let updateuser = userModel.UserData.find(user => user.email === req.params.email);
     if (!updateuser) {
       return res
         .status(404)
@@ -68,7 +69,7 @@ const UserController = {
 
     // return update
 
-    updateuser = usermodel.UserData.find(user => user.email === req.params.email);
+    updateuser = userModel.UserData.find(user => user.email === req.params.email);
 
     const token = webtoken.sign({ sub: updateuser.id }, config.secret);
     res.status(200).json({
@@ -78,6 +79,34 @@ const UserController = {
       token,
     });
   },
+
+  logIn: (req, res) => {
+    // Validating
+    const { error } = authenticateUser.UserLoginValidator(req.body);
+    if (error) {
+      return res.status(400).json({ status: 400, error: error.details[0].message.slice(0,70) });
+    }
+
+    // Check email
+    const loggeduser = userModel.UserData.find(u => u.email === req.body.email);
+    if (!loggeduser) {
+      res.status(400).json({ status: 400, error: 'Email and/or password is incorrect' });
+    }
+    // password
+    else {
+      const comparePasswords = bcrypt.compareSync(req.body.password, loggeduser.password);
+      if (!comparePasswords) {
+        return res.status(400).json({ status: 400, error: 'Email and/or password is incorrect' });
+      }
+
+      // Generate token
+      const token = webtoken.sign({ sub: loggeduser.id }, config.secret);
+      // user isloggedIn
+      loggeduser.isLoggedIn = 'true';
+      res.status(200).json({status: 200, message: 'Logged In Successfully', data: loggeduser, token });
+    }
+  },
+
 };
 
 export default UserController;
