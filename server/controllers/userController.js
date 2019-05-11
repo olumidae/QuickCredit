@@ -46,17 +46,16 @@ const UserController = {
       return res.status(400).json({ status: 400, error: 'You are not allowed to verify the clients user account. Log in as Admin' });
     }
 
-
     // Check if user exists
-
-    let updateuser = userModel.UserData.find(user => user.email === req.params.email);
-    if (!updateuser) {
+    let updateUser = userModel.UserData.find(user => user.email === req.params.email);
+    if (!updateUser) {
       return res
         .status(404)
         .json({ status: 404, error: 'The user does not exist' });
     }
 
-    if (updateuser.status === 'verified') {
+    if (updateUser
+      .status === 'verified') {
       return res
         .status(400)
         .json({
@@ -65,17 +64,17 @@ const UserController = {
         });
     }
 
-    updateuser.status = req.body.status;
+    updateUser.status = req.body.status;
 
     // return update
 
-    updateuser = userModel.UserData.find(user => user.email === req.params.email);
+    updateUser = userModel.UserData.find(user => user.email === req.params.email);
 
-    const token = webtoken.sign({ sub: updateuser.id }, config.secret);
+    const token = webtoken.sign({ sub: updateUser.id }, config.secret);
     res.status(200).json({
       status: 200,
       message: 'User marked as verified',
-      data: updateuser,
+      data: updateUser,
       token,
     });
   },
@@ -84,11 +83,11 @@ const UserController = {
     // Validating
     const { error } = authenticateUser.UserLoginValidator(req.body);
     if (error) {
-      return res.status(400).json({ status: 400, error: error.details[0].message.slice(0,70) });
+      return res.status(400).json({ status: 400, error: error.details[0].message.slice(0, 70) });
     }
 
     // Check email
-    const loggeduser = userModel.UserData.find(u => u.email === req.body.email);
+    const loggeduser = userModel.UserData.find(user => user.email === req.body.email);
     if (!loggeduser) {
       res.status(400).json({ status: 400, error: 'Email and/or password is incorrect' });
     }
@@ -103,7 +102,7 @@ const UserController = {
       const token = webtoken.sign({ sub: loggeduser.id }, config.secret);
       // user isloggedIn
       loggeduser.isLoggedIn = 'true';
-      res.status(200).json({status: 200, message: 'Logged In Successfully', data: loggeduser, token });
+      res.status(200).json({ status: 200, message: 'Logged In Successfully', data: loggeduser, token });
     }
   },
 
