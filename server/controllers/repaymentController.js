@@ -1,4 +1,5 @@
 import webtoken from 'jsonwebtoken';
+import moment from 'moment';
 import config from '../config/config.json';
 import loanModel from '../models/loanModel';
 import repaymentsModel from '../models/repaymentModel';
@@ -23,13 +24,13 @@ const repaymentsController = {
     }
 
 
-    const loanTorepay = loanModel.loans.find(l => l.id === req.body.loanId && l.repaid !== 'true');
+    const loanTorepay = loanModel.loans.find(loan => loan.id === req.body.loanId && loan.repaid !== 'true');
 
     if (!loanTorepay) {
       return res.status(400).json({ status: 400, error: 'The specified unrepaid loan is not found !!' });
     }
 
-    let newrepayloan = repaymentsModel.repayments.find(nl => nl.loanId === req.body.loanId && nl.createdOn === moment().format('LL'));
+    let newrepayloan = repaymentsModel.repayments.find(newLoan => newLoan.loanId === req.body.loanId && newLoan.createdOn === moment().format('LL'));
 
     if (newrepayloan) {
       return res.status(400).json({ status: 400, error: 'This installment is already recorded' });
@@ -41,8 +42,39 @@ const repaymentsController = {
     res.status(201).json({ status: 201, message: 'The loan repayment was successfully recorded', data: newrepayloan, token });
   },
 
+  unpaidLoan(req, res) {
+
+    const unpaidLoans = loanModel.loans.filter(loan => loan.status === 'approved' && loan.repaid === 'false');
+    if (unpaidLoans.length > 0) {
+      return res.status(200).json({
+        status: 200,
+        data: unpaidLoans,
+      });
+    }
+    return res.status(404).json({
+      status: 404,
+      message: 'They are no unpaid loans',
+    });
+  },
+
+  paidLoan(req, res) {
+    let status = req.query;
+    const paidLoans = loanModel.loans.filter(loan => loan.status === 'approved' && loan.repaid === 'true');
+    if (paidLoans.length > 0) {
+      return res.status(200).json({
+        status: 200,
+        data: paidLoans,
+      });
+    }
+    return res.status(404).json({
+      status: 404,
+      message: 'They are no paid loans',
+    });
+  },
+
+
   repaymentsHistory: (req, res) => {
-    const myrepayments = repaymentsModel.repayments.find(l => l.loanId === req.params.loanId);
+    const myrepayments = repaymentsModel.repayments.find(loan => loan.loanId === req.params.loanId);
 
     if (!myrepayments) {
       return res.status(404).json({ status: 404, error: `No repayments for the loan  ${req.params.loanId} found` });
