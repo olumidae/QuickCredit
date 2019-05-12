@@ -8,9 +8,9 @@ class Loans {
     const newLoan = {
       id: this.loans.length + 1,
       user: info.user,
-      createdOn: new Date().toString('dd/MM/yyyy'),
+      createdOn: new Date().toString(),
       status: 'pending',
-      repaid: false,
+      repaid: 'false',
       tenor: parseFloat(info.tenor),
       amount: parseFloat(info.amount),
       interest: parseFloat(info.amount) * 5 / 100,
