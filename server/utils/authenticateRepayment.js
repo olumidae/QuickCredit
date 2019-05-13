@@ -5,6 +5,7 @@ const repaymentValidator = (amount) => {
     loanId: jo.number().required(),
     amount: jo.number().required(),
     dateCreated: jo.date().required(),
+    isPaid: jo.bool().required(),
   };
   return jo.validate(amount, repayFormat);
 };

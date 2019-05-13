@@ -1,4 +1,5 @@
 import loanModel from './loanModel';
+import moment from 'moment';
 
 class Repayments {
   constructor() {
@@ -8,7 +9,7 @@ class Repayments {
   repayLoan(info, res) {
     const newRepay = {
       id: this.repayments.length + 1,
-      createdOn: new Date().toString(),
+      createdOn: moment().format('LL'),
       loanId: parseInt(info.loanId),
       amount: parseFloat(info.amount),
     };
