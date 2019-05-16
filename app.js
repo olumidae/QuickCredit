@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // endpoints
-app.use('/', route);
+app.use('/api/v1', route);
 
 // Routes
 // app.use('/', (req, res) => {

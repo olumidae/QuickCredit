@@ -1,6 +1,6 @@
 import webtoken from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import config from '../config/config.json';
+import config from '../../config/config.json';
 import userModel from '../models/userModel';
 import authenticateUser from '../utils/authenticateUser';
 
@@ -17,7 +17,7 @@ const UserController = {
     const { error } = authenticateUser.signupValidator(req.body);
 
     if (error) {
-      return res.status(400).json({ status: 400, error: error.details[0].message.slice(0, 70) });
+      return res.status(400).json({ status: 400, error: error.details[0].message });
     }
 
     let signupUser = userModel.UserData.find(user => user.email === req.body.email);
@@ -38,13 +38,13 @@ const UserController = {
     // validate data
     const { error } = authenticateUser.verifyUserValidator(req.body);
     if (error) {
-      return res.status(400).json({ status: 400, error: error.details[0].message.slice(0, 70) });
+      return res.status(400).json({ status: 400, error: error.details[0].message });
     }
 
-    const isloggedAsAdmin = userModel.UserData.find(user => user.email === req.body.verifiedBy && user.isLoggedIn === 'true' && user.isAdmin === 'true');
-    if (!isloggedAsAdmin) {
-      return res.status(400).json({ status: 400, error: 'You are not allowed to verify the clients user account. Log in as Admin' });
-    }
+    // const isloggedAsAdmin = userModel.UserData.find(user => user.email === req.body.verifiedBy && user.isLoggedIn === 'true' && user.isAdmin === 'true');
+    // if (!isloggedAsAdmin) {
+    //   return res.status(400).json({ status: 400, error: 'You are not allowed to verify the clients user account. Log in as Admin' });
+    // }
 
     // Check if user exists
     let updateUser = userModel.UserData.find(user => user.email === req.params.email);
@@ -102,7 +102,7 @@ const UserController = {
       const token = webtoken.sign({ sub: loggeduser.id }, config.secret);
       // user isloggedIn
       loggeduser.isLoggedIn = 'true';
-      res.status(200).json({ status: 200, message: 'Logged In Successfully', data: loggeduser, token });
+      return res.status(200).json({ status: 200, message: 'Logged In Successfully', data: loggeduser, token });
     }
   },
 

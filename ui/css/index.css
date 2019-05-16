@@ -11,7 +11,7 @@ header {
     background: rgb(234, 123, 54);
     color: #ffffff;
     padding-top: 30px;
-    min-height: 70px;
+    min-height: 50px;
     border-bottom: #000000 3px solid;
 }
 
@@ -61,18 +61,43 @@ header a:hover {
     /* min-height: 600px;  */
     height: 700px;
     max-width: 100%;
-    background: url('../img/piggy-bank-2889046_1920.jpg') ;
+    background: #adadad url('../img/wp3082278.jpg') no-repeat ;
+    background-blend-mode: multiply;
     background-size: cover;
+    background-position: center;
+    height: 60vh;
+    /* background-color: rgba(0,0,0,0.5);
+    background-size: 1000px ;
+    ;height: 30%
+    width: 750%; */
     text-align: right;
     color: #ffffff;
 }
 
-#display h1 {
+
+#display > h1 {
     margin-top: 100px;
-    margin-left: 700px;
+    margin-left: 300px;
     font-size: 25px;
     /* margin-bottom: 10px; */
+    float: left;
 }
+
+.slogan {
+    float: left;
+    margin-left: 250px;
+    color: #0c35eeda;
+}
+
+.intro {
+    float: center;
+    
+    /* color: #0c35eeda;   */
+}
+
+/* span {
+    color: green;
+} */
 
 #display p { 
     font-size: 19px;
@@ -86,30 +111,8 @@ header a:hover {
     background: #000000;
 }
 
-#newsletter h1 {
-    float: left;
-}
 
-#newsletter form {
-    float: right;
-    margin-top: 25px;
-}
 
-#newsletter input[type="email"] {
-    padding: 4px;
-    height: 25px;
-    width: 200px;
-}
-
-.btnSubscribe {
-    color: #ffffff;
-    height: 33px;
-    background-color: rgb(234, 123, 54);
-    border: none;
-    /* padding-left: 20px; */
-    /* padding-right: 20px; */
-    cursor: pointer;
-}
 
 #cardBox {
     margin-top: 0px;
@@ -127,6 +130,12 @@ header a:hover {
 #contact {
     background-color: rgb(234, 123, 54);
     color: #ffffff;
+    
+}
+
+.enquiryForm {
+   float: center;
+   text-align: center;
 }
 
 .row {
@@ -135,6 +144,7 @@ header a:hover {
 
 .nameLabel {
     color: black;
+    
 }
 
 #contact input[type="text"] {
@@ -148,7 +158,7 @@ header a:hover {
     width: 300px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    height: 310px;
+    height: 210px;
     box-sizing: border-box;
     resize: none;
 }
@@ -162,6 +172,14 @@ header a:hover {
 }
 
 footer {
-    background-color: #808080;
+    background-color: #050404;
+    color: antiquewhite;
 }
 
+.form-container h3 {
+text-align: center;
+}
+
+.form-container .name {
+    float: center;
+}
