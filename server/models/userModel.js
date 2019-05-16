@@ -8,9 +8,9 @@ class UserData {
   signUp(info) {
     const newUser = {
       id: this.UserData.length + 1,
-      email: info.email,
       firstName: info.firstName,
       lastName: info.lastName,
+      email: info.email,
       password: bcrypt.hashSync(info.password, 5),
       address: info.address,
       status: 'unverified',

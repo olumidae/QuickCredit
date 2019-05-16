@@ -60,13 +60,13 @@ header a:hover {
 }
 
 .box {
-    margin-top: 330px;
+    margin-top: 230px;
     margin-left: 50%;
     /* margin: 500px; */
     /* position: absolute; */
     /* top: 60%;
     left: 50%;  */
-    height: 560px;
+    height: 360px;
     transform: translate(-50%, -50%);
     width: 380px;
     padding: 35px;

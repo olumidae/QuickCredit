@@ -9,7 +9,7 @@
     <meta name="author" content="Olumide Omitiran">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quick Credit</title>
-    <link rel="stylesheet" href="/ui/css/index.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
@@ -21,8 +21,8 @@
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="/ui/signInPage.html">Login / SignUp</a></li>
+                    <li><a href="signInPage.html">Login</a></li>
+                    <li><a href="signUpPage.html">SignUP</a></li> <!--changed css link from /ui -->
                 </ul>
             </nav>
         </div>
@@ -30,13 +30,13 @@
 
     <section id="display">
         <div class="container">
-            <h1 class="intro">Your Number 1 online lending platform.</h1>
-            <p>Quick Credit is an online lending platform that provides short term soft loans to individuals.
-            </p>
+            <h1 class="slogan">Your Number 1 online <span>lending platform.</span></h1>
+            <h4 class="intro">Quick Credit is an online lending platform that provides short term soft loans to individuals.
+            </h4>
         </div>
     </section>
 
-    <section id="newsletter">
+    <!-- <section id="newsletter">
         <div class="container">
             <h1>Subscribe to Our Newsletter</h1>
             <form>
@@ -44,7 +44,7 @@
                 <button type="submit" class="btnSubscribe">Subscribe</button>
             </form>
         </div>
-    </section>
+    </section> -->
     <section id="cardBox">
         <div class="container">
             <div class="box">
@@ -60,20 +60,21 @@
                     micro credit institutions I have known. Keep up the excellent service."</p>
             </div>
             <div class="box">
-                <h5 class="text-3">Miss Understood</h5>
+                <h5 class="text-3">Mr Michael Peters</h5>
                 <p class="text-3">"I am extremely impressed. My Loan was disbursed to me in less than 2 hours after
                     complete
                     documentation."</p>
             </div>
         </div>
     </section>
-    <section id="contact">
+    <!-- <section id="contact">
         <div class="container">
-            <h3>Reach out to us for your enquiries.</h3>
-            <form>
+            <div class="form-container">
+            <h3 >Reach out to us for your enquiries.</h3>
+            <form class="enquiryForm">
                 <div class="row">
                     <div class="nameLabel">
-                        <label for="name">Name</label>
+                        <label for="name" class="name">Name</label>
                     </div>
                     <div class="inputDiv">
                         <input type="text" id="name" name="firstname" placeholder="Your name..">
@@ -101,14 +102,14 @@
 
             </form>
         </div>
-    </section>
+        </div>
+    </section> -->
 
     <footer id="footer">
         <div class="container">
             <p>Quick Credit, Copyright</p>
         </div>
     </footer>
-
 </body>
 
 </html>
