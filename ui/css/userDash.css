@@ -1,8 +1,10 @@
 body {
-    font-family: "Lato", sans-serif;
-    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
     padding: 0;
-    background-color: #808080;
+    margin: 0;
+    background-color: #000000;
 }
 
 header {
@@ -11,15 +13,12 @@ header {
     padding-top: 30px;
     min-height: 70px;
     border-bottom: #000000 3px solid;
-    width: 100%;
-
 }
 
 .container {
     width: 80%;
     margin: auto;
     overflow: hidden;
-    /* background-color: #808080; */
 }
 
 ul {
@@ -60,157 +59,89 @@ header a:hover {
     font-weight: bold;
 }
 
+.box {
+    margin-top: 230px;
+    margin-left: 50%;
+    /* margin: 500px; */
+    /* position: absolute; */
+    /* top: 60%;
+    left: 50%;  */
+    height: 360px;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    padding: 35px;
+    background: rgba(0, 0, 0, .8);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin-bottom: 0px;
+}
 
-.sidenav {
-    margin-top: 103px;
-    height: 100%;
-    width: 200px;
-    position: fixed;
-    z-index: 1;
+.box h2 {
+    margin: 0 0 30px;
+    padding: 0%;
+    color: #fff;
+    text-align: center
+}
+
+.box .inputBox {
+    position: relative;
+}
+
+.box .inputBox input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    /* outline: none; */
+    background: transparent;
+}
+
+.box .inputBox label {
+    position: absolute;
     top: 0;
     left: 0;
-    background-color: rgb(234, 123, 54);
-    overflow-x: hidden;
-    padding-top: 20px;
+    padding: 10px 0;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
 }
 
-.sidenav a {
-    margin-top: 20px;
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 20px;
-    color: #000000;
-    display: block;
+.box .inputBox input:focus~label,
+.box .inputBox input:valid~label {
+    top: -18px;
+    left: 0;
+    color: rgb(234, 123, 54);
+    font-size: 12px;
 }
 
-.sidenav a:hover {
-    color: #f1f1f1;
-    background-color: #808080;
-}
-
-
-
-@media screen and (max-height: 450px) {
-    .sidenav {
-        padding-top: 15px;
-    }
-
-    .sidenav a {
-        font-size: 18px;
-    }
-}
-
-
-
-#outer-form {
-    text-align: left;
-    background-color: white;
-    height: 100%;
-    width: 75%;
-    max-width: 900px;
-    padding: 10px;
-    margin: 0 auto;
-    border-radius: 5px;
-    background-color: #808080;
-}
-
-
-
-.labels {
-    display: inline-block;
+h5 {
     text-align: right;
-    width: 40%;
-    padding: 5px;
-    vertical-align: top;
-    margin-top: 10px;
 }
 
-.rightTab {
-    display: inline-block;
-    text-align: left;
-    width: 48%;
-    vertical-align: middle;
+a {
+    text-decoration: none;
+    color: rgb(234, 123, 54);
+
 }
 
-.input-field {
-    width: 70%;
-    height: 20px;
-    width: 250px;
-    padding: 5px;
-    margin: 10px;
-    border: 1px solid #c0c0c0;
-    border-radius: 4px;
-}
-
-.dropdown {
-    height: 30px;
-    width: 140px;
-    padding: 2px;
-    margin: 10px;
-    border: 1px solid #c0c0c0;
-    margin-top: 17px;
-    border-radius: 4px;
-}
-
-input[type="submit"] {
-    height: 40px;
-    margin: 10px;
-    background-color: #03a9f4;
+.box input[type="submit"] {
+    background: transparent;
     border: none;
-    border-radius: 5px;
+    outline: none;
+    color: #fff;
+    background: #03a9f4;
+    padding: 10px 20px;
     cursor: pointer;
-}
-
-#address {
-    height: 50px;
-    overflow: hidden;
-}
-#address{
-    width: 350px;
-    border: 1px solid #ccc;
     border-radius: 5px;
-    height: 37px;
-    /* box-sizing: border-box; */
-    resize: none;
 }
 
-
-/* Loan History */
-table {
-    margin: 50px;
-    width: inherit;
-}
-
-#table {
-    margin-left: 100px;
-
-}
-
-#customers {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-#customers td,
-#customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-#customers tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-#customers tr:hover {
-    background-color: #ddd;
-}
-
-#customers th {
-    width: 270px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #000000;
-    color: white;
+footer {
+    background-color: grey;
 }
