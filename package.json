@@ -5,11 +5,13 @@
   "main": "app.js",
   "scripts": {
     "test": "nyc mocha ./server/test/users --exec babel-node --require babel-core/register --timeout 10000 --exit",
-    "start": "babel-node app.js  --exec babel-node",
-    "start:server": "babel-node -- app.js",
-    "dev": "nodemon --exec babel-node app.js",
-    "build": "babel app.js --out-dir build",
-    "coverage": "nyc report --reporter=lcov --reporter=text | coveralls"
+    "start-test": "babel-node ./server/app.js  --exec babel-node",
+    "start:server": "babel-node -- ./server/app.js",
+    "dev": "nodemon --exec babel-node ./server/app.js",
+    "build-test": "babel ./server/app.js --out-dir build",
+    "coverage": "nyc report --reporter=lcov --reporter=text | coveralls",
+    "start": "node ./build/app.js",
+    "build": "babel server/ --out-dir build/"
   },
   "repository": {
     "type": "git",
