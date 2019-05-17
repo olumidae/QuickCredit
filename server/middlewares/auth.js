@@ -1,13 +1,11 @@
 import webtoken from 'jsonwebtoken';
-import config from '../config/config.json';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const auth = () => {
-  const { secret } = config;
-  return webtoken({ secret }).unless({
-    path: [
-      '../test',
-    ],
-  });
+  const { secret } = process.env;
+  return webtoken({ secret });
 };
 
 export default auth;
