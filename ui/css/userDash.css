@@ -5,7 +5,7 @@ body {
     background-color: #808080;
 }
 
- header {
+header {
     background: rgb(234, 123, 54);
     color: #ffffff;
     padding-top: 30px;
@@ -13,21 +13,21 @@ body {
     border-bottom: #000000 3px solid;
     width: 100%;
 
- }
+}
 
- .container {
+.container {
     width: 80%;
     margin: auto;
     overflow: hidden;
     /* background-color: #808080; */
 }
 
- ul {
+ul {
     margin: 0;
     padding: 0;
 }
 
- header a {
+header a {
     color: #ffffff;
     text-decoration: none;
     text-transform: uppercase;
@@ -35,33 +35,33 @@ body {
     font-weight: bold;
 }
 
- header li {
+header li {
     float: left;
     display: inline;
     padding: 0 20px 0 20px;
 }
 
- header #branding {
+header #branding {
     float: left;
 }
 
- header #branding h1 {
+header #branding h1 {
     margin: 0;
 }
 
- header nav {
+header nav {
     float: right;
     margin-top: 10px;
 }
 
- header a:hover {
+header a:hover {
     color: #cccccc;
     font-size: 20px;
     font-weight: bold;
 }
 
 
- .sidenav {
+.sidenav {
     margin-top: 103px;
     height: 100%;
     width: 200px;
@@ -74,7 +74,7 @@ body {
     padding-top: 20px;
 }
 
- .sidenav a {
+.sidenav a {
     margin-top: 20px;
     padding: 6px 8px 6px 16px;
     text-decoration: none;
@@ -83,26 +83,26 @@ body {
     display: block;
 }
 
- .sidenav a:hover {
+.sidenav a:hover {
     color: #f1f1f1;
     background-color: #808080;
 }
 
 
 
- @media screen and (max-height: 450px) {
+@media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;
     }
 
-     .sidenav a {
+    .sidenav a {
         font-size: 18px;
     }
 }
 
 
 
- #outer-form {
+#outer-form {
     text-align: left;
     background-color: white;
     height: 100%;
@@ -116,7 +116,7 @@ body {
 
 
 
- .labels {
+.labels {
     display: inline-block;
     text-align: right;
     width: 40%;
@@ -125,14 +125,14 @@ body {
     margin-top: 10px;
 }
 
- .rightTab {
+.rightTab {
     display: inline-block;
     text-align: left;
     width: 48%;
     vertical-align: middle;
 }
 
- .input-field {
+.input-field {
     width: 70%;
     height: 20px;
     width: 250px;
@@ -142,7 +142,7 @@ body {
     border-radius: 4px;
 }
 
- .dropdown {
+.dropdown {
     height: 30px;
     width: 140px;
     padding: 2px;
@@ -152,7 +152,7 @@ body {
     border-radius: 4px;
 }
 
- input[type="submit"] {
+input[type="submit"] {
     height: 40px;
     margin: 10px;
     background-color: #03a9f4;
@@ -161,7 +161,7 @@ body {
     cursor: pointer;
 }
 
- #address {
+#address {
     height: 50px;
     overflow: hidden;
 }
@@ -175,42 +175,42 @@ body {
 }
 
 
- /* Loan History */
+/* Loan History */
 table {
     margin: 50px;
     width: inherit;
 }
 
- #table {
+#table {
     margin-left: 100px;
 
- }
+}
 
- #customers {
+#customers {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
- #customers td,
+#customers td,
 #customers th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
- #customers tr:nth-child(even) {
+#customers tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
- #customers tr:hover {
+#customers tr:hover {
     background-color: #ddd;
 }
 
- #customers th {
+#customers th {
     width: 270px;
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
     background-color: #000000;
     color: white;
-} 
+}
