@@ -1,7 +1,6 @@
-/* eslint-disable no-undef */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../../app';
+import app from '../app';
 
 const { expect } = chai;
 chai.use(chaiHttp);
@@ -87,54 +86,54 @@ describe('Register new user', () => {
 });
 
 
-// describe('Login', () => {
-//   it('Lets new and existing users login', (done) => {
-//     chai.request(app)
-//       .post('/api/v1/auth/logIn')
-//       .send({
-//         email: 'oomitiran@gmail.com',
-//         password: 'supersecret',
-//       })
-//       .end((err, res) => {
-//         expect(res.body.status).to.equal(200);
-//         expect(res.body).to.have.property('status');
-//         expect(res.body).to.have.property('message');
-//         expect(res.body).to.have.property('data');
-//         expect(res.body).to.be.an('object');
-//         done();
-//       });
-//   });
+describe('Login', () => {
+  it('Lets new and existing users login', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send({
+        email: 'oomitiran@gmail.com',
+        password: '12345678',
+      })
+      .end((err, res) => {
+        expect(res.body.status).to.equal(200);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('message');
+        expect(res.body).to.have.property('data');
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
 
-//   it('All fields are required', (done) => {
-//     chai.request(app)
-//       .post('/api/v1/auth/logIn')
-//       .send({
-//         email: '',
-//         password: '',
-//       })
-//       .end((err, res) => {
-//         expect(res.body.status).to.equal(400);
-//         expect(res.body).to.have.property('status');
-//         expect(res.body).to.have.property('error');
-//         expect(res.body).to.be.an('object');
-//         done();
-//       });
-//   });
+  it('All fields are required', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send({
+        email: '',
+        password: '',
+      })
+      .end((err, res) => {
+        expect(res.body.status).to.equal(400);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('error');
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
 
 
-//   it('Incorrect Password', (done) => {
-//     chai.request(app)
-//       .post('/api/v1/auth/logIn')
-//       .send({
-//         email: 'oomitiran@gmail.com',
-//         password: 'secret',
-//       })
-//       .end((err, res) => {
-//         expect(res.body.status).to.equal(400);
-//         expect(res.body).to.have.property('status');
-//         expect(res.body).to.have.property('error');
-//         expect(res.body).to.be.an('object');
-//         done();
-//       });
-//   });
-// });
+  it('Incorrect Password', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send({
+        email: 'oomitiran@gmail.com',
+        password: 'secret',
+      })
+      .end((err, res) => {
+        expect(res.body.status).to.equal(400);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('error');
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+});

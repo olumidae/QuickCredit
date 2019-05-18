@@ -1,8 +1,12 @@
 import webtoken from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import config from '../../config/config.json';
+import dotenv from 'dotenv';
 import userModel from '../models/userModel';
 import authenticateUser from '../utils/authenticateUser';
+
+dotenv.config();
+
+const { secret } = process.env;
 
 const UserController = {
   getAllUsers: (req, res) => {
@@ -28,9 +32,17 @@ const UserController = {
 
     signupUser = userModel.signUp(req.body);
 
-    const token = webtoken.sign({ sub: signupUser.id }, config.secret);
+    const token = webtoken.sign({ sub: signupUser.id }, secret);
     res.status(201).json({
-      status: 201, message: 'Successfully registered', data: signupUser, token,
+      status: 201,
+      message: 'Successfully registered', 
+      data: {
+        id: signupUser.id,
+        firstName: signupUser.firstName,
+        lastName: signupUser.lastName,
+        email: signupUser.email,
+      },
+      token,
     });
   },
 
@@ -70,7 +82,7 @@ const UserController = {
 
     updateUser = userModel.UserData.find(user => user.email === req.params.email);
 
-    const token = webtoken.sign({ sub: updateUser.id }, config.secret);
+    const token = webtoken.sign({ sub: updateUser.id }, secret);
     res.status(200).json({
       status: 200,
       message: 'User marked as verified',
@@ -99,7 +111,7 @@ const UserController = {
       }
 
       // Generate token
-      const token = webtoken.sign({ sub: loggeduser.id }, config.secret);
+      const token = webtoken.sign({ sub: loggeduser.id }, secret);
       // user isloggedIn
       loggeduser.isLoggedIn = 'true';
       return res.status(200).json({ status: 200, message: 'Logged In Successfully', data: loggeduser, token });

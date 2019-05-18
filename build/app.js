@@ -1,41 +1,42 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
 
-let _express = _interopRequireDefault(require("express"));
+var _express = require('express');
 
-let _bodyParser = _interopRequireDefault(require("body-parser"));
+var _express2 = _interopRequireDefault(_express);
 
-let _index = _interopRequireDefault(require("./server/routes/index"));
+var _bodyParser = require('body-parser');
 
-let _users = _interopRequireDefault(require("./server/routes/users"));
+var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
+var _debug = require('debug');
 
-let app = (0, _express.default)();
-app.use(
-  _bodyParser.default.urlencoded({
-    extended: true
-  })
-);
-app.use(_bodyParser.default.json()); // endpoints
+var _debug2 = _interopRequireDefault(_debug);
 
-app.use(_users.default); // Routes
+var _routes = require('./routes/routes');
 
-app.use("/", (req, res) => {
-  res.send({
-    message: "Welcome to the homepage"
-  });
-});
-app.use("/", _index.default);
-app.use("/", _users.default); // app.use('/api/v1/signin', users);
+var _routes2 = _interopRequireDefault(_routes);
 
-let PORT = process.env.PORT || 5000;
-app.listen(PORT, console.log("Server Running on ".concat(PORT, "!!!")));
-let _default = app;
-exports.default = _default;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var app = (0, _express2.default)();
+var Debug = (0, _debug2.default)('dev');
+
+app.use(_bodyParser2.default.urlencoded({ extended: true }));
+app.use(_bodyParser2.default.json());
+
+// endpoints
+app.use('/api/v1', _routes2.default);
+
+// Routes
+// app.use('/', (req, res) => {
+//   res.send({ message: 'Welcome to the homepage' });
+// });
+
+var PORT = process.env.PORT || 5000;
+app.listen(PORT, console.log('Server Running on ' + PORT + '!!!'));
+
+exports.default = app;

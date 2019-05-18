@@ -1,9 +1,11 @@
 import webtoken from 'jsonwebtoken';
-import config from '../../config/config.json';
+import dotenv from 'dotenv';
 import userModel from '../models/userModel';
 import loanModel from '../models/loanModel';
 import authenticateLoan from '../utils/authenticateLoan';
 
+dotenv.config();
+const { secret } = process.env;
 
 const loanController = {
   getAllLoans: (req, res) => {
@@ -87,7 +89,7 @@ const loanController = {
 
     pendingLoan = loanModel.loans.find(loan => loan.user === req.params.user);
 
-    const token = webtoken.sign({ sub: pendingLoan.id }, config.secret);
+    const token = webtoken.sign({ sub: pendingLoan.id }, secret);
     return res.status(200).json({ status: 200, message: 'User marked as verified', data: pendingLoan, token,
     });
   },
