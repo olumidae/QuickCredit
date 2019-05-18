@@ -1,9 +1,11 @@
 import webtoken from 'jsonwebtoken';
 import moment from 'moment';
-import config from '../../config/config.json';
+
 import loanModel from '../models/loanModel';
 import repaymentsModel from '../models/repaymentModel';
 import repaymentValidator from '../utils/authenticateRepayment';
+
+require('dotenv').config();
 
 const repaymentsController = {
   getAllRepayments: (req, res) => {
@@ -38,7 +40,7 @@ const repaymentsController = {
 
     newrepayloan = repaymentsModel.repayLoan(req.body, res);
 
-    const token = webtoken.sign({ sub: newrepayloan.id }, config.secret);
+    const token = webtoken.sign({ sub: newrepayloan.id }, process.env.secret);
     return res.status(201).json({ status: 201, message: 'The loan repayment was successfully recorded', data: newrepayloan, token });
   },
 
