@@ -1,10 +1,6 @@
 import webtoken from 'jsonwebtoken';
 import moment from 'moment';
-<<<<<<< HEAD
 import dotenv from 'dotenv';
-=======
-
->>>>>>> 582a65dc45140a266f1f4ab6312d39c022d5d742
 import loanModel from '../models/loanModel';
 import repaymentsModel from '../models/repaymentModel';
 import repaymentValidator from '../utils/authenticateRepayment';
@@ -45,11 +41,7 @@ const repaymentsController = {
 
     newrepayloan = repaymentsModel.repayLoan(req.body, res);
 
-<<<<<<< HEAD
     const token = webtoken.sign({ sub: newrepayloan.id }, secret);
-=======
-    const token = webtoken.sign({ sub: newrepayloan.id }, process.env.secret);
->>>>>>> 582a65dc45140a266f1f4ab6312d39c022d5d742
     return res.status(201).json({ status: 201, message: 'The loan repayment was successfully recorded', data: newrepayloan, token });
   },
 

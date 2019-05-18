@@ -34,7 +34,15 @@ const UserController = {
 
     const token = webtoken.sign({ sub: signupUser.id }, secret);
     res.status(201).json({
-      status: 201, message: 'Successfully registered', data: signupUser, token,
+      status: 201,
+      message: 'Successfully registered', 
+      data: {
+        id: signupUser.id,
+        firstName: signupUser.firstName,
+        lastName: signupUser.lastName,
+        email: signupUser.email,
+      },
+      token,
     });
   },
 
