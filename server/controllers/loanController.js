@@ -30,7 +30,7 @@ const loanController = {
     return res.status(200).json({ status: 200, data: loanModel.loans });
   },
 
-  // worked 14/5/19
+
   applyForLoan: (req, res) => {
     // Validating
     const { error } = authenticateLoan.applyValidator(req.body);
@@ -39,11 +39,11 @@ const loanController = {
       return res.status(400).json({ status: 400, error: error.details[0].message });
     }
 
-    // const isloggedin = userModel.UserData.find(user => user.email === req.body.user && user.isLoggedIn === 'true' && user.isAdmin === 'false');
-    // if (!isloggedin) return res.status(400).json({ status: 400, error: 'You must  be logged in to request a loan' });
+    const isloggedin = userModel.UserData.find(user => user.email === req.body.user && user.isLoggedIn === 'true' && user.isAdmin === 'false');
+    if (!isloggedin) return res.status(400).json({ status: 400, error: 'You must  be logged in to request a loan' });
 
-    // const isVerified = userModel.UserData.find(user => user.email === req.body.user && user.status === 'verified');
-    // if (!isVerified) return res.status(400).json({ status: 400, error: 'You are not allowed to request a loan, your account is not verified' });
+    const isVerified = userModel.UserData.find(user => user.email === req.body.user && user.status === 'verified');
+    if (!isVerified) return res.status(400).json({ status: 400, error: 'You are not allowed to request a loan, your account is not verified' });
 
     let newloan = loanModel.loans.find(loan => loan.user === req.body.user && loan.repaid !== 'true');
 

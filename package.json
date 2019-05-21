@@ -4,7 +4,7 @@
   "description": "Online lending platform",
   "main": "app.js",
   "scripts": {
-    "test": "nyc mocha ./server/test/users --exec babel-node --require babel-core/register --timeout 10000 --exit",
+    "test": "nyc mocha ./server/test/**/*.test.js --exec babel-node --require babel-core/register --timeout 10000 --exit",
     "start-test": "babel-node ./server/app.js  --exec babel-node",
     "start:server": "babel-node -- ./server/app.js",
     "dev": "nodemon --exec babel-node ./server/app.js",
@@ -42,7 +42,8 @@
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
-    "nyc": "^14.1.1"
+    "nyc": "^14.1.1",
+    "pg": "^7.11.0"
   },
   "devDependencies": {
     "coveralls": "^3.0.3",

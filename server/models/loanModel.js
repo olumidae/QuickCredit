@@ -5,19 +5,19 @@ class Loans {
   }
 
   applyForLoan(info) {
-    const interest = parseFloat(info.amount) * 5 / 100;
-
+    const interest = parseFloat(info.amount) * 0.05;
+    const balance = parseFloat(info.amount) + interest;
     const newLoan = {
       id: this.loans.length + 1,
       user: info.user,
       createdOn: new Date().toString(),
       status: 'pending',
-      repaid: 'false',
+      repaid: false,
       tenor: parseFloat(info.tenor),
       amount: parseFloat(info.amount),
       interest,
-      paymentInstallment: interest / parseFloat(info.tenor),
-      balance: parseFloat(info.amount) + (parseFloat(info.amount) * 5 / 100),
+      paymentInstallment: balance / parseFloat(info.tenor),
+      balance,
     };
     this.loans.push(newLoan);
     return newLoan;

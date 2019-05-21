@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import user from '../dummies/users';
 
 class UserData {
   constructor() {
