@@ -21,6 +21,6 @@ router.get('/loans/:id', Loan.getSpecificLoan); //
 router.get('/loans', Loan.getAllLoans); // works
 router.get('/loans/:id/repayments', Payment.repaymentsHistory);
 router.post('/loans', Loan.applyForLoan); // works
-router.patch('loans/:id', Loan.approveLoan); 
+router.patch('loans/:id', Loan.approveLoan);
 router.post('/loans/:id/repayment', Payment.repayLoan); //
 export default router;

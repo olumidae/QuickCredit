@@ -15,7 +15,7 @@ describe('Register new user', () => {
         lastName: 'omitiran',
         email: 'oomitiran@gmail.com',
         address: 'lagos',
-        password: '12345678',
+        password: 'password@123',
         isAdmin: 'true',
       })
       .end((err, res) => {
@@ -70,10 +70,10 @@ describe('Register new user', () => {
       .set('Content-type', 'application/json')
       .set('Accept', 'application/json')
       .send({
-        firstName: 'Eden',
-        lastName: 'Hazard',
-        email: 'ehazard@gmail.com',
-        password: 'ehazard10',
+        firstName: 'Olumide',
+        lastName: 'Omitiran',
+        email: 'oomitiran@gmail.com',
+        password: 'password@123',
       })
       .end((err, res) => {
         expect(res.body.status).to.equal(400);
@@ -92,7 +92,7 @@ describe('Login', () => {
       .post('/api/v1/auth/signin')
       .send({
         email: 'oomitiran@gmail.com',
-        password: '12345678',
+        password: 'password@123',
       })
       .end((err, res) => {
         expect(res.body.status).to.equal(200);

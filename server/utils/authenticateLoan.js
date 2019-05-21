@@ -6,7 +6,7 @@ const applyValidator = (loan) => {
     firstName: jo.string().required(),
     lastName: jo.string().required(),
     address: jo.string().required(),
-    email: jo.string().email().required(), /** .regex(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).required(), */
+    email: jo.string().email().required().label('Email is required'),
     tenor: jo.number().max(12).required(),
     amount: jo.number().required(),
     status: jo.string().valid('pending', 'approved', 'rejected'),

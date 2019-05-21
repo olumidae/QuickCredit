@@ -1,11 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import debug from 'debug';
+
 import route from './routes/routes';
 
 
 const app = express();
-const Debug = debug('dev');
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
