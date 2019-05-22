@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-
+import pool from './db/db';
 import route from './routes/routes';
 
 
@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 
 // endpoints
 app.use('/api/v1', route);
+
 
 // Routes
 // app.use('/', (req, res) => {

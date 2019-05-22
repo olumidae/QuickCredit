@@ -11,7 +11,8 @@
     "build-test": "babel ./server/app.js --out-dir build",
     "coverage": "nyc report --reporter=lcov --reporter=text | coveralls",
     "start": "node ./build/app.js",
-    "build": "babel server/ --out-dir build/"
+    "build": "babel server/ --out-dir build/",
+    "create-tables": "babel-node ./server/db/createTables.js" 
   },
   "repository": {
     "type": "git",
@@ -46,6 +47,7 @@
     "pg": "^7.11.0"
   },
   "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
     "coveralls": "^3.0.3",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
