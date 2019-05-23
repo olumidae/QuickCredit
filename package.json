@@ -12,7 +12,7 @@
     "coverage": "nyc report --reporter=lcov --reporter=text | coveralls",
     "start": "node ./build/app.js",
     "build": "babel server/ --out-dir build/",
-    "create-tables": "babel-node ./server/db/createTables.js" 
+    "setup-db": "babel-node ./server/db/seeds.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/olumidae/QuickCredit#readme",
   "dependencies": {
+    "@babel/register": "^7.4.4",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",

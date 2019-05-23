@@ -1,18 +1,18 @@
 import express from 'express';
 
 import Loan from '../controllers/loanController';
-import User from '../controllers/userController';
-
+// import User from '../controllers/userController';
+import Users from '../db/controller/users';
 import Payment from '../controllers/repaymentController';
 // create the express router that will have all endpoints
 const router = express.Router();
 
 
 // Registration Handler
-router.get('/users', User.getAllUsers);
-router.post('/auth/signup', User.signUp); // w
-router.post('/auth/signin', User.logIn); // w
-router.patch('/users/:email', User.verifyUser); // w
+// router.get('/users', User.getAllUsers);
+router.post('/auth/signup', Users.signupUser); // w
+// router.post('/auth/signin', User.logIn); // w
+// router.patch('/users/:email', User.verifyUser); // w
 
 // Loan Handler
 router.get('/loans/:id', Loan.getSpecificLoan); //

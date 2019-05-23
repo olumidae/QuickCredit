@@ -12,9 +12,9 @@ var _loanController = require('../controllers/loanController');
 
 var _loanController2 = _interopRequireDefault(_loanController);
 
-var _userController = require('../controllers/userController');
+var _users = require('../db/controller/users');
 
-var _userController2 = _interopRequireDefault(_userController);
+var _users2 = _interopRequireDefault(_users);
 
 var _repaymentController = require('../controllers/repaymentController');
 
@@ -23,13 +23,15 @@ var _repaymentController2 = _interopRequireDefault(_repaymentController);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // create the express router that will have all endpoints
+
+// import User from '../controllers/userController';
 var router = _express2.default.Router();
 
 // Registration Handler
-router.get('/users', _userController2.default.getAllUsers);
-router.post('/auth/signup', _userController2.default.signUp); // w
-router.post('/auth/signin', _userController2.default.logIn); // w
-router.patch('/users/:email', _userController2.default.verifyUser); // w
+// router.get('/users', User.getAllUsers);
+router.post('/auth/signup', _users2.default.signupUser); // w
+// router.post('/auth/signin', User.logIn); // w
+// router.patch('/users/:email', User.verifyUser); // w
 
 // Loan Handler
 router.get('/loans/:id', _loanController2.default.getSpecificLoan); //
