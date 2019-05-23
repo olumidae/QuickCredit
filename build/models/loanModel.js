@@ -18,19 +18,19 @@ var Loans = function () {
   _createClass(Loans, [{
     key: 'applyForLoan',
     value: function applyForLoan(info) {
-      var interest = parseFloat(info.amount) * 5 / 100;
-
+      var interest = parseFloat(info.amount) * 0.05;
+      var balance = parseFloat(info.amount) + interest;
       var newLoan = {
         id: this.loans.length + 1,
         user: info.user,
         createdOn: new Date().toString(),
         status: 'pending',
-        repaid: 'false',
+        repaid: false,
         tenor: parseFloat(info.tenor),
         amount: parseFloat(info.amount),
         interest: interest,
-        paymentInstallment: interest / parseFloat(info.tenor),
-        balance: parseFloat(info.amount) + parseFloat(info.amount) * 5 / 100
+        paymentInstallment: balance / parseFloat(info.tenor),
+        balance: balance
       };
       this.loans.push(newLoan);
       return newLoan;

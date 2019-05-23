@@ -60,7 +60,15 @@ var UserController = {
 
     var token = _jsonwebtoken2.default.sign({ sub: signupUser.id }, secret);
     res.status(201).json({
-      status: 201, message: 'Successfully registered', data: signupUser, token: token
+      status: 201,
+      message: 'Successfully registered',
+      data: {
+        id: signupUser.id,
+        firstName: signupUser.firstName,
+        lastName: signupUser.lastName,
+        email: signupUser.email
+      },
+      token: token
     });
   },
 
@@ -105,7 +113,15 @@ var UserController = {
     res.status(200).json({
       status: 200,
       message: 'User marked as verified',
-      data: updateUser,
+      data: {
+        id: updateUser.id,
+        firstName: updateUser.firstName,
+        lastName: updateUser.lastName,
+        email: updateUser.email,
+        address: updateUser.address,
+        status: updateUser.status,
+        isLoggedIn: updateUser.isLoggedIn
+      },
       token: token
     });
   },
@@ -137,7 +153,21 @@ var UserController = {
         var token = _jsonwebtoken2.default.sign({ sub: loggeduser.id }, secret);
         // user isloggedIn
         loggeduser.isLoggedIn = 'true';
-        return res.status(200).json({ status: 200, message: 'Logged In Successfully', data: loggeduser, token: token });
+        return res.status(200).json({
+          status: 200,
+          message: 'Logged In Successfully',
+          data: {
+            id: loggeduser.id,
+            firstName: loggeduser.firstName,
+            lastName: loggeduser.lastName,
+            email: loggeduser.email,
+            address: loggeduser.address,
+            status: loggeduser.status,
+            isLoggedIn: loggeduser.isLoggedIn,
+            isAdmin: loggeduser.isAdmin
+          },
+          token: token
+        });
       }
   }
 

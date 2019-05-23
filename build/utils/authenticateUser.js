@@ -18,12 +18,13 @@ var UserLoginValidator = function UserLoginValidator(user) {
   return _joi2.default.validate(user, loginformat);
 };
 
+var pattern = /^[a-zA-Z0-9!@#$%&*]{3,25}$/;
 var signupValidator = function signupValidator(user) {
   var signupFormat = {
     firstName: _joi2.default.string().min(3).trim().required(),
     lastName: _joi2.default.string().min(3).required(),
     email: _joi2.default.string().email().required(),
-    password: _joi2.default.string().regex(/^[a-zA-Z0-9]{4,8}$/).min(4).required(),
+    password: _joi2.default.string().regex(pattern).min(4).required(),
     address: _joi2.default.string().min(3),
     status: _joi2.default.string().valid('verified', 'unverified'),
     isAdmin: _joi2.default.boolean().valid('true', 'false'),

@@ -15,7 +15,7 @@ var applyValidator = function applyValidator(loan) {
     firstName: _joi2.default.string().required(),
     lastName: _joi2.default.string().required(),
     address: _joi2.default.string().required(),
-    email: _joi2.default.string().email().required(), /** .regex(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).required(), */
+    email: _joi2.default.string().email().required().label('Email is required'),
     tenor: _joi2.default.number().max(12).required(),
     amount: _joi2.default.number().required(),
     status: _joi2.default.string().valid('pending', 'approved', 'rejected'),
