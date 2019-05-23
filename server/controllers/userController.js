@@ -17,34 +17,37 @@ const UserController = {
     return res.status(200).json({ status: 200, data: userModel.UserData });
   },
 
-  signUp: (req, res) => {
-    const { error } = authenticateUser.signupValidator(req.body);
+  async signupUser(req, res) {
+    const queryText = `INSERT INTO 
+    users(firstName, lastName, email, password, address) 
+    VALUES($1, $2, $3, $4, $5) 
+    RETURNING *`;
 
-    if (error) {
-      return res.status(400).json({ status: 400, error: error.details[0].message });
+    const { firstName, lastName, email, password, address } = req.body;
+
+    const hashPassword = await bcrypt.hash(password, 5);
+
+    const values = [firstName, lastName, email, hashPassword, address];
+
+    try {
+      const { rows } = await db.query(queryText, values);
+
+      const token = webtoken.sign({ email }, secret);
+
+      return res.status(201).json({
+        data: {
+          id: rows[0].id,
+          firstName: rows[0].firstname,
+          lastName: rows[0].lastname,
+          email: rows[0].email,
+        },
+        token,
+      });
+    } catch (error) {
+      return res.status(400).send(error);
     }
-
-    let signupUser = userModel.UserData.find(user => user.email === req.body.email);
-
-    if (signupUser) {
-      return res.status(400).json({ status: 400, error: 'This email has been registered!' });
-    }
-
-    signupUser = userModel.signUp(req.body);
-
-    const token = webtoken.sign({ sub: signupUser.id }, secret);
-    res.status(201).json({
-      status: 201,
-      message: 'Successfully registered',
-      data: {
-        id: signupUser.id,
-        firstName: signupUser.firstName,
-        lastName: signupUser.lastName,
-        email: signupUser.email,
-      },
-      token,
-    });
   },
+
 
   verifyUser: (req, res) => {
     // validate data
