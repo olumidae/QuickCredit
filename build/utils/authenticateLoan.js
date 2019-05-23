@@ -15,7 +15,7 @@ var applyValidator = function applyValidator(loan) {
     firstName: _joi2.default.string().required(),
     lastName: _joi2.default.string().required(),
     address: _joi2.default.string().required(),
-    email: _joi2.default.string().email().required().label('Email is required'),
+    email: _joi2.default.string().email().required(),
     tenor: _joi2.default.number().max(12).required(),
     amount: _joi2.default.number().required(),
     status: _joi2.default.string().valid('pending', 'approved', 'rejected'),

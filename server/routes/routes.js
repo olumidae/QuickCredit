@@ -11,8 +11,10 @@ const router = express.Router();
 // Registration Handler
 // router.get('/users', User.getAllUsers);
 router.post('/auth/signup', Users.signupUser); // w
+router.post('/auth/signin', Users.logIn);
 // router.post('/auth/signin', User.logIn); // w
 // router.patch('/users/:email', User.verifyUser); // w
+router.patch('/users/:email', Users.verifyUser);
 
 // Loan Handler
 router.get('/loans/:id', Loan.getSpecificLoan); //

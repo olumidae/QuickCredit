@@ -26,4 +26,8 @@ var auth = function auth() {
   return (0, _jsonwebtoken2.default)({ secret: secret });
 };
 
-exports.default = auth;
+var hashPassword = function hashPassword(password) {
+  return _bcrypt2.default.hashSync(password, _bcrypt2.default.genSaltSync(10));
+};
+
+exports.default = { auth: auth, hashPassword: hashPassword };

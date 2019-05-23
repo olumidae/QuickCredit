@@ -30,6 +30,7 @@ var router = _express2.default.Router();
 // Registration Handler
 // router.get('/users', User.getAllUsers);
 router.post('/auth/signup', _users2.default.signupUser); // w
+router.post('auth/signin', _users2.default.logIn);
 // router.post('/auth/signin', User.logIn); // w
 // router.patch('/users/:email', User.verifyUser); // w
 

@@ -2,7 +2,7 @@ import jo from 'joi';
 
 const UserLoginValidator = (user) => {
   const loginformat = jo.object().keys({
-    email: jo.string().email(),
+    email: jo.string().email().required(),
     password: jo.string().min(6).required(),
   }).with('email', 'password');
   return jo.validate(user, loginformat);
@@ -25,7 +25,7 @@ const signupValidator = (user) => {
 
 const verifyUserValidator = (user) => {
   const updateFormat = {
-    status: jo.string().valid('verified', 'unverified').required(),
+    status: jo.string().valid('verified', 'unverified'),
     verifiedBy: jo.string(),
 
   };

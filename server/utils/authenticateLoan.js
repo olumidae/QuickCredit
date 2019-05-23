@@ -6,7 +6,7 @@ const applyValidator = (loan) => {
     firstName: jo.string().required(),
     lastName: jo.string().required(),
     address: jo.string().required(),
-    email: jo.string().email().required().label('Email is required'),
+    email: jo.string().email().required(),
     tenor: jo.number().max(12).required(),
     amount: jo.number().required(),
     status: jo.string().valid('pending', 'approved', 'rejected'),
