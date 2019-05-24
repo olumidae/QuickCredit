@@ -1,7 +1,9 @@
 import webtoken from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import moment from 'moment';
 import userModel from '../models/userModel';
 import loanModel from '../models/loanModel';
+import db from '../db/db';
 import authenticateLoan from '../utils/authenticateLoan';
 
 dotenv.config();
@@ -58,15 +60,6 @@ const loanController = {
     });
   },
 
-  loansListByStatus: (req, res) => {
-    const verifyLoan = loanModel.loans.find(loan => loan.status === req.params.status);
-
-    if (!verifyLoan) {
-      return res.status(404).json({ status: 404, error: `No ${req.params.status} loan(s) found` });
-    }
-
-    return res.status(200).json({ status: 200, data: verifyLoan });
-  },
 
   approveLoan: (req, res) => {
     // validate data
@@ -94,16 +87,6 @@ const loanController = {
     });
   },
 
-  getSpecificLoan: (req, res) => {
-    const { id } = req.params;
-    const getLoanById = loanModel.loans.find(loan => loan.id === Number(id));
-
-    if (!getLoanById) {
-      return res.status(404).json({ status: 404, error: 'Loan does not exist' });
-    }
-
-    return res.status(200).json({ status: 200, data: getLoanById });
-  },
 
 };
 export default loanController;
