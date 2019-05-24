@@ -102,7 +102,6 @@ const Users = {
   },
 
 
-
   async getAllUsers(req, res) {
     const findAllQuery = 'SELECT * FROM users';
 

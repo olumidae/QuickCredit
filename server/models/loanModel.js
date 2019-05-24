@@ -1,3 +1,4 @@
+import moment from 'moment';
 
 class Loans {
   constructor() {
@@ -10,7 +11,7 @@ class Loans {
     const newLoan = {
       id: this.loans.length + 1,
       user: info.user,
-      createdOn: new Date().toString(),
+      createdOn: moment().toDate(),
       status: 'pending',
       repaid: false,
       tenor: parseFloat(info.tenor),

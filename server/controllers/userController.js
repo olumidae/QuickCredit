@@ -1,7 +1,7 @@
 import webtoken from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
-import userModel from '../models/userModel';
+import db from '../db/db';
 import authenticateUser from '../utils/authenticateUser';
 
 dotenv.config();
@@ -9,12 +9,15 @@ dotenv.config();
 const { secret } = process.env;
 
 const UserController = {
-  getAllUsers: (req, res) => {
-    if (!userModel.UserData.length) {
-      return res.status(404).json({ status: 404, error: 'No user(s) found' });
-    }
+  async getAllUsers(req, res) {
+    const findAllQuery = 'SELECT * FROM users';
 
-    return res.status(200).json({ status: 200, data: userModel.UserData });
+    try {
+      const { rows, rowCount } = await db.query(findAllQuery);
+      return res.status(200).send({ rows, rowCount });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
   },
 
   async signupUser(req, res) {
@@ -49,99 +52,104 @@ const UserController = {
   },
 
 
-  verifyUser: (req, res) => {
-    // validate data
-    const { error } = authenticateUser.verifyUserValidator(req.body);
-    if (error) {
-      return res.status(400).json({ status: 400, error: error.details[0].message });
-    }
+  async verifyUser(req, res) {
+    const { email } = req.params;
+    const queryText = 'SELECT * FROM users WHERE email = $1';
 
-    // const isloggedAsAdmin = userModel.UserData.find(user => user.email === req.body.verifiedBy && user.isLoggedIn === 'true' && user.isAdmin === 'true');
-    // if (!isloggedAsAdmin) {
-    //   return res.status(400).json({ status: 400, error: 'You are not allowed to verify the clients user account. Log in as Admin' });
-    // }
-
-    // Check if user exists
-    let updateUser = userModel.UserData.find(user => user.email === req.params.email);
-    if (!updateUser) {
-      return res
-        .status(404)
-        .json({ status: 404, error: 'The user does not exist' });
-    }
-
-    if (updateUser
-      .status === 'verified') {
-      return res
-        .status(400)
-        .json({
+    try {
+      const { rows } = await db.query(queryText, [email]);
+      if (!rows[0]) {
+        return res.status(401).json({
           status: 400,
-          error: 'The user already marked as verified',
+          error: 'User not found!',
         });
+      }
+      if (rows[0].status === 'verified') {
+        return res.status(401).json({
+          status: 401,
+          error: 'User is already verified!',
+        });
+      }
+      const updateOneQuery = "UPDATE users SET status = 'verified' WHERE email = $1 RETURNING *";
+
+      const { rows: rowsUpdate } = await db.query(updateOneQuery, [email]);
+      return res.status(201).json({
+        status: 201,
+        data: {
+          email,
+          firstName: rowsUpdate[0].firstName,
+          lastName: rowsUpdate[0].lastName,
+          address: rowsUpdate[0].address,
+          status: rowsUpdate[0].status,
+        },
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 500,
+        error: `Internal server error ${error.message}`,
+      });
     }
-
-    updateUser.status = req.body.status;
-
-    // return update
-
-    updateUser = userModel.UserData.find(user => user.email === req.params.email);
-
-    const token = webtoken.sign({ sub: updateUser.id }, secret);
-    res.status(200).json({
-      status: 200,
-      message: 'User marked as verified',
-      data: {
-        id: updateUser.id,
-        firstName: updateUser.firstName,
-        lastName: updateUser.lastName,
-        email: updateUser.email,
-        address: updateUser.address,
-        status: updateUser.status,
-        isLoggedIn: updateUser.isLoggedIn,
-      },
-      token,
-    });
   },
 
-  logIn: (req, res) => {
+  async logIn(req, res) {
     // Validating
     const { error } = authenticateUser.UserLoginValidator(req.body);
+
     if (error) {
       return res.status(400).json({ status: 400, error: error.details[0].message.slice(0, 70) });
     }
+    const queryText = 'SELECT * FROM users WHERE email = $1';
 
-    // Check email
-    const loggeduser = userModel.UserData.find(user => user.email === req.body.email);
-    if (!loggeduser) {
-      res.status(400).json({ status: 400, error: 'Email and/or password is incorrect' });
-    }
-    // password
-    else {
-      const comparePasswords = bcrypt.compareSync(req.body.password, loggeduser.password);
-      if (!comparePasswords) {
-        return res.status(400).json({ status: 400, error: 'Email and/or password is incorrect' });
+    const { email, password } = req.body;
+
+
+    try {
+      // Select all user record where email is equal to the email in the db
+      const { rows } = await db.query(queryText, [email]);
+
+
+      // check if user exist in database
+      if (!rows[0].email) {
+        res.status(400).json({ status: 400, error: 'Email and/or password is incorrect' });
       }
 
-      // Generate token
-      const token = webtoken.sign({ sub: loggeduser.id }, secret);
-      // user isloggedIn
-      loggeduser.isLoggedIn = 'true';
+
+      const comparePassword = bcrypt.compareSync(password, rows[0].password);
+
+      if (!comparePassword) {
+        return res.status(401).json({
+          status: 401,
+          error: 'Password incorrect',
+        });
+      }
+      const token = webtoken.sign({
+        id: rows[0].id,
+        email,
+      }, secret);
+
+      rows[0].isloggedin = true;
       return res
         .status(200)
         .json({
           status: 200,
           message: 'Logged In Successfully',
           data: {
-            id: loggeduser.id,
-            firstName: loggeduser.firstName,
-            lastName: loggeduser.lastName,
-            email: loggeduser.email,
-            address: loggeduser.address,
-            status: loggeduser.status,
-            isLoggedIn: loggeduser.isLoggedIn,
-            isAdmin: loggeduser.isAdmin,
+            id: rows[0].id,
+            firstName: rows[0].firstname,
+            lastName: rows[0].lastname,
+            email: rows[0].email,
+            address: rows[0].address,
+            status: rows[0].status,
+            isLoggedIn: rows[0].isloggedin,
+            isAdmin: rows[0].isadmin,
           },
           token,
         });
+    } catch (e) {
+      return res.status(500).json({
+        status: 500,
+        error: 'Internal server error',
+      });
     }
   },
 
