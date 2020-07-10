@@ -1,6 +1,5 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import pool from './db/db';
 import route from './routes/routes';
 
 
