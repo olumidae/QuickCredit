@@ -3,3 +3,4 @@ config
 .env
 .coveralls
 .nyc_output
+build

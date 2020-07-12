@@ -28,6 +28,29 @@ class AuthController {
     };
     return object;
   }
+
+  static async login(req, res) {
+    try {
+      const user = await AuthService.login(req.body);
+      if (!user) return ResponseHelper.setError(res, 400, errors.notFound);
+      if (user.error === 'Invalid credentials') return ResponseHelper.setError(res, 403, errors.loginFailure);
+      const data = AuthController.loginUser(user);
+      return ResponseHelper.setSuccess(res, 200, data);
+    } catch (error) {
+      return ResponseHelper.setError(res, 500, errors.serverError);
+    }
+  }
+
+  static loginUser(user) {
+    const data = {
+      token: generateToken(user),
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    };
+    return data;
+  }
 }
 
 export default AuthController;
