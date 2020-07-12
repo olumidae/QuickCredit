@@ -45,6 +45,11 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 'unverified',
       allowNull: false,
     },
+    isLoggedIn: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
+    },
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
