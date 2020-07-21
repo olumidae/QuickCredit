@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+import config from 'dotenv';
 import bcrypt from 'bcrypt';
 
-dotenv.config();
+config();
 
 const auth = () => {
   const { secret } = process.env;

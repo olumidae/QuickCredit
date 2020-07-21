@@ -6,22 +6,22 @@ import ResponseHelper from '../helper/response';
 
 /**
  * @fileoverview class that functions as middleware to authenticate and authorize user
- * @class Auth
+ * @class Validate
  * @requires Joi@requires ../helper/Validator
  * @requires ResponseHelper ../jelper/responseHelper
- * @exports Auth
- */
+ * @exports Validate
+*/
 
-class Auth {
+class Validate {
   /**
    * validate signup data
    * @param {Object} request
    * @param {Object} response
    * @param {function} next
    * @returns {Object} error
-   */
+  */
 
-  static authSignUp(request, response, next) {
+  static userSignUp(request, response, next) {
     const name = Joi.string().min(3).regex(rules.validName).trim().required();
     const email = Joi.string().email().required();
     const password = Joi.string().min(8).regex(rules.passwordLength).required();
@@ -47,7 +47,7 @@ class Auth {
    * @param {Object} request
    * @param {Object} response
    * @param {Function} next
-   */
+  */
   static login(request, response, next) {
     const email = Joi.string().email().lowercase().required();
     const password = Joi.string().regex(rules.passwordLength).required();
@@ -65,4 +65,4 @@ class Auth {
   }
 }
 
-export default Auth;
+export default Validate;

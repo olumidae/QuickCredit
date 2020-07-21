@@ -3,7 +3,7 @@ import Joi from 'joi';
 /**
  * @fileoverview class to hold validator method
  * @class Validator
- * @exports Validator 
+ * @exports Validator
 */
 
 class Validator {

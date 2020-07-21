@@ -1,10 +1,11 @@
 import db from '../models';
-import passwordHelper from '../helper/password';
+import { comparePassword, passwordHash } from '../helper/password';
 
 const { Users } = db;
 
 /**
- * Class representing Auth Service
+ * @fileoverview Class representing Auth Service
+ * @exports AuthService
 */
 
 class AuthService {
@@ -13,7 +14,7 @@ class AuthService {
   */
   static async signUp(body) {
     const { password } = body;
-    const hashedPassword = passwordHelper.passwordHash(password);
+    const hashedPassword = passwordHash(password);
     const response = await Users.create({
       ...body,
       password: hashedPassword,
@@ -28,8 +29,7 @@ class AuthService {
   static async login(body) {
     const  { email, password } = body;
     const user = await AuthService.findUserByEmail(email);
-
-    if (user && passwordHelper.comparePassword(password, user.dataValues.password)) {
+    if (user && comparePassword(password, user.dataValues.password)) {
       const loginUser = await user.update({
         isLoggedIn: true,
       })
@@ -52,4 +52,4 @@ class AuthService {
   }
 }
 
-export default AuthService
+export default AuthService;

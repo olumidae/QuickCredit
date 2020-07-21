@@ -1,10 +1,16 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
+import adminUsers from '../seed-data/adminUsers';
 
 const { expect } = chai;
 chai.use(chaiHttp);
 
+let adminToken;
+
+const payload = {
+  ...adminUsers[1], password: ''
+}
 
 describe('Register new user', () => {
   it('Lets new user register', (done) => {
