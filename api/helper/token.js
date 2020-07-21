@@ -1,17 +1,17 @@
-import dotenv from 'dotenv';
+import { config } from 'dotenv';
 import jwt from 'jsonwebtoken';
 
-dotenv.config();
+config();
 const { secret } = process.env;
 const expiryTime = 84600;
 
 /**
- * @fileoverview function to gen token
+ * @fileoverview function to generate token
  * @param {Object} userObject
  * @returns {Object} token
  * @exports generateToken
 */
 
-const generateToken = ({ id, email }) => jwt.sign({ id, email }, secret, { expiresIn: expiryTime });
+const generateToken = ({ id, email, isAdmin }) => jwt.sign({ id, email, isAdmin }, secret, { expiresIn: expiryTime });
 
 export default generateToken;

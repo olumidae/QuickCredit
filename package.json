@@ -4,17 +4,19 @@
   "description": "Online lending platform API",
   "main": "app.js",
   "scripts": {
-    "test": "nyc mocha ./server/test/**/*.test.js --exec babel-node --require @babel/register --timeout 10000 --exit",
-    "start-test": "babel-node ./server/app.js  --exec babel-node",
-    "start:server": "babel-node -- ./server/app.js",
-    "dev": "nodemon --exec babel-node ./server/app.js",
-    "build-test": "babel ./server/app.js --out-dir build",
-    "migration": "node_modules/.bin/sequelize db:migrate",
+    "test": "nyc mocha ./api/test/**/*.test.js --exec babel-node --require @babel/register --timeout 10000 --exit",
+    "start-test": "babel-node ./api/app.js  --exec babel-node",
+    "start:server": "babel-node -- ./api/app.js",
+    "dev": "nodemon --exec babel-node ./api/app.js",
+    "build-test": "babel ./api/app.js --out-dir build",
+    "build": "babel api/ --out-dir build/",
     "undo:migration": "node_modules/.bin/sequelize db:migrate:undo:all",
     "coverage": "nyc report --reporter=lcov --reporter=text | coveralls",
     "start": "node ./build/app.js",
-    "build": "babel server/ --out-dir build/",
-    "setup-db": "babel-node ./server/db/seeds.js"
+    "migration": "node_modules/.bin/sequelize db:migrate",
+    "seed:admin": "node_modules/.bin/sequelize db:seed --seed `basename $(ls ./api/seeders/*-adminUsers.js)`",
+    "seeders": "node_modules/.bin/sequelize db:seed:all",
+    "undo:seeders": "node_modules/.bin/sequelize db:seed:undo:all"
   },
   "repository": {
     "type": "git",
@@ -44,8 +46,9 @@
     "path": "^0.12.7",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.21.13",
-    "sequelize-cli": "^5.5.1"
+    "sequelize": "^5.22.3",
+    "sequelize-cli": "^5.5.1",
+    "uuidv4": "^6.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.3",

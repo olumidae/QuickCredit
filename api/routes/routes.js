@@ -1,6 +1,8 @@
 import express from 'express';
-import Auth from '../middlewares/auth';
+import Validate from '../middlewares/validateUser';
 import AuthController from '../controller/auth';
+import Auth from '../middlewares/auth';
+import AdminController from '../controller/admin';
 
 // create the express router that will have all endpoints
 const router = express.Router();
@@ -8,10 +10,11 @@ const router = express.Router();
 
 // Registration Handler
 // router.get('/users', User.getAllUsers);
-router.post('/auth/signup', Auth.authSignUp, AuthController.signUp); // w
-router.post('/auth/login', Auth.login, AuthController.login);
+router.post('/auth/signup', Validate.userSignUp, AuthController.signUp); // w
+router.post('/auth/login', Validate.login, AuthController.login);
 
-// router.patch('/users/:email', User.verifyUser);
+// router.patch('/users/:email/verify', tokenValidator.validateAdminToken);
+router.patch('/users/:email/verify', Auth.Admin, AdminController.verify);
 // Loan Handler
 // router.get('/loans/:id', Loan.getSpecificLoan);
 // router.get('/loans?status=approved&repaid=false', Payment.unpaidLoan);

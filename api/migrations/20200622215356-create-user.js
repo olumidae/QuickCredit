@@ -29,7 +29,7 @@ module.exports = {
     status: {
       type: Sequelize.ENUM,
       values: ['verified', 'unverified'],
-      defaultValue: 'unverified',
+      defaultValue: 'verified',
       allowNull: false,
     },
     createdAt: {
