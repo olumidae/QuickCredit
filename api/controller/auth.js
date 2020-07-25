@@ -1,6 +1,6 @@
 import ResponseHelper from '../helper/response';
 import AuthService from '../services/auth';
-import userObject from '../helper/user';
+import { userObject } from '../helper/user';
 import errors from '../helper/errors';
 
 class AuthController {
@@ -21,7 +21,6 @@ class AuthController {
   static async login(req, res) {
     try {
       const user = await AuthService.login(req.body);
-      console.log('USER', user);
       if (!user) return ResponseHelper.setError(res, 400, errors.notFound);
       if (user.error === 'Invalid credentials') return ResponseHelper.setError(res, 403, errors.loginFailure);
       const data = userObject(user);

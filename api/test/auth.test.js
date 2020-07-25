@@ -1,31 +1,48 @@
 import chai from 'chai';
+import { before, it } from 'mocha';
 import chaiHttp from 'chai-http';
 import app from '../app';
 import adminUsers from '../seed-data/adminUsers';
+import users from '../seed-data/users';
 
 const { expect } = chai;
 chai.use(chaiHttp);
-
+const baseurl = '/api/v1/';
 let adminToken;
 
-const payload = {
-  ...adminUsers[1], password: ''
-}
+// const payload = {
+//   ...adminUsers[1], password: ''
+// }
 
-describe('Register new user', () => {
+describe('User Authorization', () => {
+  before((done) => {
+    chai.request(app)
+      .post(`${baseurl}/auth/login`)
+      .send({
+        email: adminUsers[0].email,
+        password: 'password@123',
+      })
+      .end((err, res) => {
+        if (err) {
+          console.log(err);
+          return done(err);
+        }
+        adminToken = res.body.data.token;
+        done();
+      });
+  });
+
   it('Lets new user register', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send({
-        firstName: 'olumide',
+        firstName: 'Adamu',
         lastName: 'omitiran',
         email: 'oomitiran@gmail.com',
         address: 'lagos',
         password: 'password@123',
-        isAdmin: 'true',
       })
       .end((err, res) => {
-        // console.log(res.body)
         expect(res.body.status).to.equal(201);
         expect(res.body).to.have.property('status');
         expect(res.body).to.have.property('message');

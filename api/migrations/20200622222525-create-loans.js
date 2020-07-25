@@ -6,15 +6,6 @@ module.exports = {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,
     },
-    userId: {
-      type: Sequelize.UUID,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'Users',
-        key: 'id',
-        as: 'userId',
-      },
-    },
     status: {
       type: Sequelize.ENUM,
       values: ['pending', 'approved', 'rejected'],
@@ -24,11 +15,11 @@ module.exports = {
     repaid: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
-      default: false,
+      defaultValue: false,
     },
     tenor: {
       type: Sequelize.ENUM,
-      values: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+      values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       allowNull: false,
     },
     amount: {
