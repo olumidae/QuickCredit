@@ -17,6 +17,7 @@ const rules = {
   desc: /^[a-zA-Z\s]*$/,
   validCode: /^[A-Z0-9]*$/,
   name: /^[a-zA-Z ]*$/,
+  digits: /^[0-9]*$/,
 };
 
 export default rules;

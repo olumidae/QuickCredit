@@ -6,15 +6,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
     },
-    userId: {
-      type: DataTypes.UUID,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'Users',
-        key: 'user',
-        as: 'userId',
-      },
-    },
     status: {
       type: DataTypes.ENUM,
       values: ['pending', 'approved', 'rejected'],
@@ -37,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: { msg: 'Empty number not allowed' },
       },
     },
-    paymentInstallment: {
+    payableInstallment: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },

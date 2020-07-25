@@ -32,6 +32,16 @@ module.exports = {
       defaultValue: 'verified',
       allowNull: false,
     },
+    isAdmin: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
+    },
+    isLoggedIn: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
+    },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE,
