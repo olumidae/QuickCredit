@@ -1,4 +1,4 @@
-import UserService from '../services/loanService';
+import { UserService } from '../services';
 import ResponseHelper from '../helper/response';
 import errors from '../helper/errors';
 
@@ -17,6 +17,7 @@ class UserController {
       if (checkLoan.repaid === false) {
         return ResponseHelper.setError(res, 400, errors.alreadyExists);
       }
+      return ResponseHelper.setError(res, 400, errors.notCreated);
     } catch (error) {
       return ResponseHelper.setError(res, 500, errors.serverError);
     }
@@ -34,7 +35,7 @@ class UserController {
       status: loan.status,
       monthlyInstallment: loan.payableInstallment,
       balance: loan.balance,
-      interest: loan.balance,
+      interest: loan.interest,
     };
     return newData;
   }
