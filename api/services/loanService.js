@@ -10,12 +10,11 @@ class UserService {
   static async createLoan(user, body) {
     const { id } = user;
     const { amount, tenor } = body;
-    const rate = parseInt('5');
     const parsedTenor = parseInt(tenor, 10);
     const parsedAmount = parseFloat(amount);
-    const interest = parseFloat((rate / 100) * parsedAmount);
-    const payableInstallment = parseFloat((amount / tenor));
-    const balance = parsedAmount;
+    const interest = parseFloat(0.05 * parsedAmount);
+    const balance = parsedAmount + interest;
+    const payableInstallment = parseFloat(balance / tenor);
 
     const response = await Loans.create({
       UserId: id,

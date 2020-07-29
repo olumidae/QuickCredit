@@ -1,6 +1,6 @@
 import db from '../models';
 
-const { Users } = db;
+const { Users, Loans } = db;
 
 /**
  * @fileoverview handles admin functionalities
@@ -25,6 +25,15 @@ class AdminService {
       },
     });
     return response[1][0];
+  }
+
+  /**
+   * Gets all loan
+   * @returns loans
+  */
+  static async getAllLoans() {
+    const loans = await Loans.findAll();
+    return loans;
   }
 }
 

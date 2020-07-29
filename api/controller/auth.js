@@ -1,5 +1,5 @@
 import ResponseHelper from '../helper/response';
-import AuthService from '../services/auth';
+import { AuthService } from '../services';
 import { userObject } from '../helper/user';
 import errors from '../helper/errors';
 
