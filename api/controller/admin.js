@@ -40,6 +40,16 @@ class AdminController {
       return ResponseHelper.setError(res, 500, errors.serverError);
     }
   }
+
+  static async deleteUser(req, res) {
+    try {
+      const { email } = req.body;
+      const user = await AdminService.deleteUser(email);
+      return ResponseHelper.setSuccess(res, 200, 'Deleted');
+    } catch (error) {
+      return ResponseHelper.setSuccess(res, 500, errors.serverError);
+    }
+  }
 }
 
 export default AdminController;

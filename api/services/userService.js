@@ -43,6 +43,18 @@ class UserService {
     });
     return response;
   }
+
+  static async updatePassword(password, id) {
+    const response = await Users.update(
+      { password },
+      {
+        where: { id },
+        returning: true,
+        plain: true,
+      },
+    );
+    return response[1][0]
+  }
 }
 
 export default UserService;

@@ -1,4 +1,4 @@
-import generateToken from './token';
+import  { generateToken } from './token';
 
 const userObject = (user) => {
   const object = {
