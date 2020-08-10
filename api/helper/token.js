@@ -14,4 +14,6 @@ const expiryTime = 84600;
 
 const generateToken = ({ id, email, isAdmin }) => jwt.sign({ id, email, isAdmin }, secret, { expiresIn: expiryTime });
 
-export default generateToken;
+const decodedUser = token => jwt.verify(token, secret);
+
+export { generateToken, decodedUser };

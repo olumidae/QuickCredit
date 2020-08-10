@@ -12,6 +12,8 @@ const router = express.Router();
 // router.get('/users', User.getAllUsers);
 router.post('/auth/signup', Validate.userSignUp, AuthController.signUp); // w
 router.post('/auth/login', Validate.login, AuthController.login);
+router.post('auth/forgot_password', AuthController.sendResetLink);
+router.delete('/auth/deleteuser', Validate.delete, AdminController.deleteUser);
 
 router.post('/loans', Auth.User, ValidateLoan.validate, UserController.createLoan); // create a loan
 router.patch('/users/:email/verify', Auth.Admin, AdminController.verify); // verify user

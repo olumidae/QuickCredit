@@ -28,6 +28,19 @@ class AdminService {
   }
 
   /**
+   * Deletes a user
+   * @param {*} email
+  */
+  static async deleteUser({ email }) {
+    const response = await Users.destroy({
+      where: {
+        email,
+      },
+    });
+    return response;
+  }
+
+  /**
    * Gets all loan
    * @returns loans
   */

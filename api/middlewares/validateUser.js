@@ -63,6 +63,20 @@ class Validate {
     }
     return ResponseHelper.setError(response, 400, error);
   }
+
+  static delete(request, response, next) {
+    const email = Joi.string().email().lowercase().required();
+
+    const loginSchema = Joi.object().keys({
+      email,
+    });
+
+    const error = Validator.validateJoi(request.body, loginSchema);
+    if (!error) {
+      return next();
+    }
+    return ResponseHelper.setError(response, 400, error);
+  }
 }
 
 export default Validate;
