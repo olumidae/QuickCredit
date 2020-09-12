@@ -20,7 +20,7 @@ router.patch('/users/:email/verify', Auth.Admin, AdminController.verify); // ver
 router.get('/loans', Auth.Admin, AdminController.getAllLoans); // get all loans
 
 // Loan Handler
-// router.get('/loans/:id', Loan.getSpecificLoan);
+router.get('/loans/:loanId', Auth.Admin, AdminController.getSpecificLoan); // get loan by id
 // router.get('/loans?status=approved&repaid=false', Payment.unpaidLoan);
 // router.get('/loans?status=approved&repaid=true', Payment.paidLoan);
 // router.get('/loans/:id/repayments', Payment.repaymentsHistory);

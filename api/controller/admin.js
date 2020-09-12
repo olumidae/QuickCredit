@@ -41,6 +41,11 @@ class AdminController {
     }
   }
 
+  /**
+   * Delete a user
+   * @param {*} req
+   * @param {*} res
+  */
   static async deleteUser(req, res) {
     try {
       const { email } = req.body;
@@ -50,6 +55,21 @@ class AdminController {
       return ResponseHelper.setSuccess(res, 500, errors.serverError);
     }
   }
+
+  /**
+   * Get a specific loan
+  */
+  static async getSpecificLoan(req, res) {
+    try {
+      const { loanId } = req.params;
+      const loan = await AdminService.getLoanById(loanId);
+      if (!loan) return ResponseHelper.setError(res, 404, errors.notFound);
+      return ResponseHelper.setSuccess(res, 200, loan);
+    } catch (error) {
+      return ResponseHelper.setError(res, 500, error);
+    }
+  }
 }
+
 
 export default AdminController;

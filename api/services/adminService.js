@@ -48,6 +48,19 @@ class AdminService {
     const loans = await Loans.findAll();
     return loans;
   }
+
+  /**
+   * Gets a specific loan
+   * @returns {object}
+  */
+  static async getLoanById(loanId) {
+    const response = await Loans.findOne({
+      where: {
+        id: loanId,
+      },
+    });
+    return response;
+  }
 }
 
 export default AdminService;
