@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       allowNull: false,
       primaryKey: true,
-      type: DataTypes.UUID,
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
 
     },
     firstName: DataTypes.STRING,
@@ -29,9 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue: 'Unverified'
     },
-    isAdmin: DataTypes.STRING,
-
-
+    isAdmin: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'User',

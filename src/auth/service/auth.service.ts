@@ -23,10 +23,11 @@ export class UserService {
 				email: req.body.email,
 			},
 		}).then((userExists: any) => {
+			logger.info(userExists)
 			if (userExists) {
 				return this.customResponse.errorResponse(res, 400, "User alreasy exists");
 			}
-			console.log('>>>>>: ', req.body);
+			
 			User.create({
 				...req.body,
 				password: bcrypt.hashSync(req.body.password, 11),
@@ -54,4 +55,57 @@ export class UserService {
             next(err);
         });
 	};
+
+	public loginUser = async (req: Request, res: Response, next: NextFunction) => {
+		    // validate user exists 
+			try {
+				User.findOne({
+					where: {
+						email: req.body.email,
+					}
+				}).then((userExist: any) => {
+					if (!userExist) return this.customResponse.errorResponse(res, 400, 'Invalid email or password');
+					// if user is inactive, return error
+					if (userExist.active === false) return this.customResponse.errorResponse(res, 400, 'User is inactive')     
+					//compare passwords
+					if(!bcrypt.compareSync(req.body.password, userExist.password)) {
+						//password is wrong, check logincount if its less than 5, update and if more than 5 deactivate account
+						return this.customResponse.errorResponse(res, 400, "Invalid email or password");			          
+					}
+		
+					// create token for user
+					const token = jwt.sign({
+						id: userExist.id,
+						email: userExist.email,
+					}, config.secret);
+		
+					return this.customResponse.okResponse(res, 200, {
+						data: token
+					})
+		
+				}).catch((err: Error) => {
+					console.log('Error', err);
+					next(err);
+				})
+			} catch (error) {
+				console.error(error);
+			}
+	}
+
+	public verifyUser = async (req: Request, res: Response, next: NextFunction) => {
+		//
+		User.findOne({
+			where: {
+				email: req.body.email,
+			}
+		}).then((userExist: any)=> {
+			if(!userExist) return this.customResponse.errorResponse(res, 404, 'User not found', {});
+
+			const updatedUser = userExist.update({
+				status: 'verified'
+			})
+
+			return this.customResponse.okResponse(res, 200, updatedUser)
+		})
+	}
 }
